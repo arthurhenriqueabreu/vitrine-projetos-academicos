@@ -20,7 +20,8 @@ client = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar))
 
 def request(path, data=None, headers=None):
     body = urllib.parse.urlencode(data, doseq=True).encode() if isinstance(data, dict) else data
-    req = urllib.request.Request(BASE + '/' + path.lstrip('/'), data=body, headers=headers or {})
+    encoded_path = urllib.parse.quote(path.lstrip('/'), safe='/?=&%+:#')
+    req = urllib.request.Request(BASE + '/' + encoded_path, data=body, headers=headers or {})
     try:
         with client.open(req, timeout=10) as r:
             return r.status, r.read(), r.headers, r.url
@@ -65,7 +66,7 @@ test('CSRF forjado retorna 419', lambda: request('login', {'csrf':'x','email':'a
 test('Tentativa de SQLi não autentica', lambda: request('login', {'csrf':csrf(html('login')),'email':"' OR 1=1 --",'senha':'x'})[0] == 422)
 test('Busca XSS é escapada', lambda: '<script>alert(1)</script>' not in html('vitrine?q=%3Cscript%3Ealert(1)%3C%2Fscript%3E'))
 test('CSP e nosniff enviados', lambda: request('login')[2].get('X-Content-Type-Options') == 'nosniff' and "script-src 'self'" in request('login')[2].get('Content-Security-Policy',''))
-test('Sessão HttpOnly e SameSite', lambda: all(x in request('login')[2].get('Set-Cookie','').lower() for x in ['httponly','samesite=lax']) if not jar else any(c.has_nonstandard_attr('HttpOnly') for c in jar))
+test('Sessão HttpOnly e SameSite', lambda: any(c.has_nonstandard_attr('HttpOnly') and c.get_nonstandard_attr('SameSite','').lower()=='lax' for c in jar))
 test('Credenciais e código não são servidos', lambda: request('.env')[0] == 404 and request('app/Database.php')[0] == 404)
 test('Catálogo de impressão', lambda: 'Imprimir ou salvar em PDF' in html('catalogo'))
 

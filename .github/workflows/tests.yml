@@ -2,12 +2,15 @@ name: PHP e MySQL reais
 on: [push, pull_request, workflow_dispatch]
 permissions:
   contents: write
+defaults:
+  run:
+    shell: bash
 concurrency:
   group: validacao-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   full-stack:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     services:
       mysql:

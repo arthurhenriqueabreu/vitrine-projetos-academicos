@@ -1,0 +1,41 @@
+{
+  "data": "2026-11-26T19:44:33.763994+00:00",
+  "sistema": "nt",
+  "conexoes": [
+    {
+      "porta": 3306,
+      "resultado": "erro",
+      "errno": 13,
+      "winerror": 10013,
+      "mensagem": "[WinError 10013] Foi feita uma tentativa de acesso a um soquete de uma maneira que é proibida pelas permissões de acesso"
+    },
+    {
+      "porta": 3308,
+      "resultado": "erro",
+      "errno": 13,
+      "winerror": 10013,
+      "mensagem": "[WinError 10013] Foi feita uma tentativa de acesso a um soquete de uma maneira que é proibida pelas permissões de acesso"
+    },
+    {
+      "porta": 8080,
+      "resultado": "erro",
+      "errno": 13,
+      "winerror": 10013,
+      "mensagem": "[WinError 10013] Foi feita uma tentativa de acesso a um soquete de uma maneira que é proibida pelas permissões de acesso"
+    },
+    {
+      "porta": 49153,
+      "resultado": "erro",
+      "errno": 13,
+      "winerror": 10013,
+      "mensagem": "[WinError 10013] Foi feita uma tentativa de acesso a um soquete de uma maneira que é proibida pelas permissões de acesso"
+    }
+  ],
+  "bind_efemero": "aprovado",
+  "token_baixa_integridade": true,
+  "docker": {
+    "exit_code": 1,
+    "saida": "Client:\n Version:           29.7.2\n API version:       1.55\n Go version:        go1.26.5\n Git commit:        a7dcaa6\n Built:             Wed Aug  5 18:31:33 2026\n OS/Arch:           windows/amd64\n Context:           desktop-linux\nfailed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.\n"
+  },
+  "conclusao": "Falhas 10013 na conexão, mesmo em portas distintas, são compatíveis com restrição do contexto de execução. Não foi identificada com certeza a regra específica de Windows Filtering Platform/firewall. Não alterar segurança: usar CI com MySQL real ou terminal normal autorizado."
+}
