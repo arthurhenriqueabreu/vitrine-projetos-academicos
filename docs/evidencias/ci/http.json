@@ -1,7 +1,7 @@
 {
   "suite": "http",
-  "aprovados": 39,
-  "reprovados": 1,
+  "aprovados": 40,
+  "reprovados": 0,
   "resultados": [
     {
       "teste": "CA01 página institucional",
@@ -37,8 +37,7 @@
     },
     {
       "teste": "Rascunho não aparece na busca",
-      "status": "reprovado",
-      "erro": "'ascii' codec can't encode character '\\xf3' in position 22: ordinal not in range(128)"
+      "status": "aprovado"
     },
     {
       "teste": "CA06 detalhes completos e PDF",
