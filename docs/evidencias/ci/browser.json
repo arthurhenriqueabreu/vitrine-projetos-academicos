@@ -1,8 +1,8 @@
 {
   "suite": "browser",
-  "data": "2026-11-26T19:48:06.874Z",
+  "data": "2026-11-26T19:53:03.401Z",
   "browser": "Chromium Playwright",
-  "source_sha": "4acfe38ec0ea1132cdf99ff792a6c86b66fbbc3a",
+  "source_sha": "d583e0fbf4ef0bb172a39da726f41f18ff5c7859",
   "aprovados": 17,
   "reprovados": 1,
   "resultados": [
@@ -10,67 +10,67 @@
       "codigo": "CA01",
       "teste": "Página institucional no navegador",
       "status": "aprovado",
-      "ms": 694
+      "ms": 859
     },
     {
       "codigo": "CA02",
       "teste": "Vitrine lista publicados",
       "status": "aprovado",
-      "ms": 657
+      "ms": 860
     },
     {
       "codigo": "CA03",
       "teste": "Filtro por área pela interface",
       "status": "aprovado",
-      "ms": 115
+      "ms": 187
     },
     {
       "codigo": "CA04",
       "teste": "Busca por título pela interface",
       "status": "aprovado",
-      "ms": 632
+      "ms": 638
     },
     {
       "codigo": "CA05",
       "teste": "Busca por autor pela interface",
       "status": "aprovado",
-      "ms": 302
+      "ms": 301
     },
     {
       "codigo": "CA06",
       "teste": "Detalhes e materiais no navegador",
-      "status": "reprovado",
-      "erro": "Texto ausente: Unidade curricular"
+      "status": "aprovado",
+      "ms": 829
     },
     {
       "codigo": "CA07",
       "teste": "Painel bloqueia visitante",
       "status": "aprovado",
-      "ms": 75
+      "ms": 189
     },
     {
       "codigo": "LOGIN",
       "teste": "Autenticação e dashboard reais",
       "status": "aprovado",
-      "ms": 708
+      "ms": 809
     },
     {
       "codigo": "CA11",
       "teste": "Cadastro de edição e disponibilidade no projeto",
       "status": "aprovado",
-      "ms": 1124
+      "ms": 1138
     },
     {
       "codigo": "CA08",
       "teste": "Cadastro de trabalho pelo formulário",
       "status": "aprovado",
-      "ms": 1266
+      "ms": 1515
     },
     {
       "codigo": "CA09",
       "teste": "Edição de trabalho pelo formulário",
       "status": "aprovado",
-      "ms": 1124
+      "ms": 1126
     },
     {
       "codigo": "UPLOAD",
@@ -82,37 +82,37 @@
       "codigo": "CA10",
       "teste": "Rascunho removido da vitrine",
       "status": "aprovado",
-      "ms": 1131
+      "ms": 1126
     },
     {
       "codigo": "DESKTOP",
       "teste": "Todas as páginas públicas e administrativas em desktop",
       "status": "aprovado",
-      "ms": 12777
+      "ms": 17380
     },
     {
       "codigo": "CA12",
       "teste": "Todas as páginas em viewport de smartphone e menu acessível",
-      "status": "aprovado",
-      "ms": 14970
+      "status": "reprovado",
+      "erro": "page.waitForFunction: Timeout 30000ms exceeded."
     },
     {
       "codigo": "TABLET",
       "teste": "Páginas principais em tablet",
       "status": "aprovado",
-      "ms": 2658
+      "ms": 2665
     },
     {
       "codigo": "TECLADO",
       "teste": "Link de pular conteúdo utilizável por teclado",
       "status": "aprovado",
-      "ms": 551
+      "ms": 550
     },
     {
       "codigo": "SEM_ERROS_JS",
       "teste": "Nenhuma exceção JavaScript durante navegação",
       "status": "aprovado",
-      "ms": 1
+      "ms": 0
     }
   ],
   "paginas": [
@@ -228,111 +228,6 @@
     },
     {
       "pagina": "/",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "vitrine",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "edicoes",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "favoritos",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "projeto/1",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "privacidade",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "catalogo",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "login",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "admin",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "admin/projetos",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "admin/projetos/novo",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "admin/auditoria",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "admin/cadastros/usuarios",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "admin/cadastros/areas",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "admin/cadastros/subareas",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "admin/cadastros/instituicoes",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "admin/cadastros/cursos",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "admin/cadastros/unidades_curriculares",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "admin/cadastros/autores",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "admin/cadastros/orientadores",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "admin/cadastros/edicoes",
-      "viewport": "390x844",
-      "status": "aprovado"
-    },
-    {
-      "pagina": "admin/cadastros/palavras_chave",
       "viewport": "390x844",
       "status": "aprovado"
     },
