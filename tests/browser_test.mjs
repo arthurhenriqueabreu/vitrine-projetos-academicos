@@ -78,6 +78,9 @@ try {
   });
   await test('CA12', 'Todas as páginas em viewport de smartphone e menu acessível', async () => {
     await page.setViewportSize({width:390,height:844});
+    await open('');
+    const clipped=await page.locator('.hero-copy').evaluate(el=>{const bad=[];const walk=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);let text;while(text=walk.nextNode()){if(!text.textContent.trim())continue;const range=document.createRange();range.selectNodeContents(text);for(const r of range.getClientRects())if(r.width>0 && (r.left<0 || r.right>innerWidth+1))bad.push(text.textContent.trim());}return bad;});
+    assert.deepEqual(clipped,[],'Texto da home cortado mesmo sem overflow no documento');
     for (const path of [...publicPages,...adminPages]) { await open(path); const d=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,width:innerWidth})); assert.ok(d.scroll<=d.width+1,`Overflow mobile em ${path}: ${JSON.stringify(d)}`); await shot(`mobile-${path.replaceAll('/','-')||'inicio'}`); pages.push({pagina:path||'/',viewport:'390x844',status:'aprovado'}); }
     for (const [path,name] of [['','09-inicio-mobile'],['vitrine','10-vitrine-mobile'],['projeto/1','11-projeto-mobile'],['admin','12-dashboard-mobile'],['admin/projetos/novo','13-formulario-mobile']]) { await open(path); await shot(name); }
     await open('vitrine'); const menu=page.getByRole('button',{name:/Menu/}); assert.equal(await menu.getAttribute('aria-expanded'),'false'); await menu.click(); assert.equal(await menu.getAttribute('aria-expanded'),'true'); await page.keyboard.press('Escape'); assert.equal(await menu.getAttribute('aria-expanded'),'false');
