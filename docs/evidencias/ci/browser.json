@@ -1,8 +1,8 @@
 {
   "suite": "browser",
-  "data": "2026-11-26T20:05:59.567Z",
+  "data": "2026-11-26T20:12:22.510Z",
   "browser": "Chromium Playwright",
-  "source_sha": "8088f506c21b6023df9d7796c344781c8f4849e4",
+  "source_sha": "4b4a1e7d58c84407b1390f49453c32bfef3c2f18",
   "aprovados": 18,
   "reprovados": 0,
   "resultados": [
@@ -10,103 +10,103 @@
       "codigo": "CA01",
       "teste": "Página institucional no navegador",
       "status": "aprovado",
-      "ms": 948
+      "ms": 1029
     },
     {
       "codigo": "CA02",
       "teste": "Vitrine lista publicados",
       "status": "aprovado",
-      "ms": 1044
+      "ms": 1133
     },
     {
       "codigo": "CA03",
       "teste": "Filtro por área pela interface",
       "status": "aprovado",
-      "ms": 101
+      "ms": 123
     },
     {
       "codigo": "CA04",
       "teste": "Busca por título pela interface",
       "status": "aprovado",
-      "ms": 642
+      "ms": 664
     },
     {
       "codigo": "CA05",
       "teste": "Busca por autor pela interface",
       "status": "aprovado",
-      "ms": 282
+      "ms": 316
     },
     {
       "codigo": "CA06",
       "teste": "Detalhes e materiais no navegador",
       "status": "aprovado",
-      "ms": 1030
+      "ms": 1123
     },
     {
       "codigo": "CA07",
       "teste": "Painel bloqueia visitante",
       "status": "aprovado",
-      "ms": 240
+      "ms": 264
     },
     {
       "codigo": "LOGIN",
       "teste": "Autenticação e dashboard reais",
       "status": "aprovado",
-      "ms": 875
+      "ms": 930
     },
     {
       "codigo": "CA11",
       "teste": "Cadastro de edição e disponibilidade no projeto",
       "status": "aprovado",
-      "ms": 1119
+      "ms": 1164
     },
     {
       "codigo": "CA08",
       "teste": "Cadastro de trabalho pelo formulário",
       "status": "aprovado",
-      "ms": 1669
+      "ms": 1779
     },
     {
       "codigo": "CA09",
       "teste": "Edição de trabalho pelo formulário",
       "status": "aprovado",
-      "ms": 1123
+      "ms": 1161
     },
     {
       "codigo": "UPLOAD",
       "teste": "Upload e visualização de imagem pelo formulário",
       "status": "aprovado",
-      "ms": 4110
+      "ms": 4235
     },
     {
       "codigo": "CA10",
       "teste": "Rascunho removido da vitrine",
       "status": "aprovado",
-      "ms": 1127
+      "ms": 1170
     },
     {
       "codigo": "DESKTOP",
       "teste": "Todas as páginas públicas e administrativas em desktop",
       "status": "aprovado",
-      "ms": 19229
+      "ms": 20014
     },
     {
       "codigo": "CA12",
       "teste": "Todas as páginas em viewport de smartphone e menu acessível",
       "status": "aprovado",
-      "ms": 25136
+      "ms": 26675
     },
     {
       "codigo": "TABLET",
       "teste": "Páginas principais em tablet",
       "status": "aprovado",
-      "ms": 2653
+      "ms": 2701
     },
     {
       "codigo": "TECLADO",
       "teste": "Link de pular conteúdo utilizável por teclado",
       "status": "aprovado",
-      "ms": 546
+      "ms": 565
     },
     {
       "codigo": "SEM_ERROS_JS",
