@@ -1,0 +1,5 @@
+{
+  "suite": "http",
+  "status": "bloqueado",
+  "motivo": "<urlopen error [WinError 10013] Foi feita uma tentativa de acesso a um soquete de uma maneira que Ú proibida pelas permiss§es de acesso>"
+}

@@ -1,5 +1,145 @@
 {
     "suite": "integration",
-    "status": "bloqueado",
-    "motivo": "SQLSTATE[HY000] [2002] Foi feita uma tentativa de acesso a um soquete de uma maneira que ├® proibida pelas permiss├Áes de acesso"
+    "data": "2026-11-26T17:10:51-03:00",
+    "servidor": "8.4.13",
+    "aprovados": 34,
+    "reprovados": 0,
+    "resultados": [
+        {
+            "teste": "CA08 criar projeto persiste dados e relações",
+            "status": "aprovado"
+        },
+        {
+            "teste": "CA09 editar projeto",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Edição simultânea antiga é rejeitada",
+            "status": "aprovado"
+        },
+        {
+            "teste": "CA10 rascunho sai da consulta pública",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Editor publica projetos",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Editor não exclui projeto",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Curso e instituição incompatíveis rejeitados pelo banco",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Subárea incompatível é recusada",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Unidade curricular incompatível é recusada",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Contadores correspondem ao filtro área\/edição",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Busca por nome de autor",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Busca por instituição",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Busca sem resultados",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Links javascript recusados",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Mass assignment não altera criado_por ou identificador",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Exclusão remove relacionamentos em cascata",
+            "status": "aprovado"
+        },
+        {
+            "teste": "CRUD areas",
+            "status": "aprovado"
+        },
+        {
+            "teste": "CRUD subareas",
+            "status": "aprovado"
+        },
+        {
+            "teste": "CRUD instituicoes",
+            "status": "aprovado"
+        },
+        {
+            "teste": "CRUD cursos",
+            "status": "aprovado"
+        },
+        {
+            "teste": "CRUD unidades_curriculares",
+            "status": "aprovado"
+        },
+        {
+            "teste": "CRUD autores",
+            "status": "aprovado"
+        },
+        {
+            "teste": "CRUD orientadores",
+            "status": "aprovado"
+        },
+        {
+            "teste": "CRUD edicoes",
+            "status": "aprovado"
+        },
+        {
+            "teste": "CRUD palavras_chave",
+            "status": "aprovado"
+        },
+        {
+            "teste": "CRUD usuarios",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Instituição com projetos não pode ser excluída",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Administrador não exclui a própria conta",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Pesquisa por palavra-chave Educação retorna cinco projetos demo",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Pesquisa por instituição sem publicados retorna vazio",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Destaques são publicados e limitados a três",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Cinco autores e três colaboradores persistem com responsável distinto",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Identificadores são únicos e não aceitam valor injetado",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Arquivar remove acesso público e mantém registro administrativo",
+            "status": "aprovado"
+        }
+    ]
 }

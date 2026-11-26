@@ -1,5 +1,199 @@
 {
   "suite": "http",
-  "status": "bloqueado",
-  "motivo": "<urlopen error [WinError 10013] Foi feita uma tentativa de acesso a um soquete de uma maneira que Ú proibida pelas permiss§es de acesso>"
+  "aprovados": 48,
+  "reprovados": 0,
+  "resultados": [
+    {
+      "teste": "CA01 página institucional",
+      "status": "aprovado"
+    },
+    {
+      "teste": "CA02 vitrine contém publicados",
+      "status": "aprovado"
+    },
+    {
+      "teste": "CA03 filtro de área",
+      "status": "aprovado"
+    },
+    {
+      "teste": "CA04 busca por título",
+      "status": "aprovado"
+    },
+    {
+      "teste": "CA05 busca por autor",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Busca por dois autores",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Combinação área e edição",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Mensagem sem resultados",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Rascunho não aparece na busca",
+      "status": "aprovado"
+    },
+    {
+      "teste": "CA06 detalhes completos e PDF",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Arquivo de projeto publicado acessível",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Projeto rascunho por ID bloqueado",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Projeto arquivado por ID bloqueado",
+      "status": "aprovado"
+    },
+    {
+      "teste": "CA07 painel anônimo redireciona ao login",
+      "status": "aprovado"
+    },
+    {
+      "teste": "CSRF ausente retorna 419",
+      "status": "aprovado"
+    },
+    {
+      "teste": "CSRF forjado retorna 419",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Tentativa de SQLi não autentica",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Busca XSS é escapada",
+      "status": "aprovado"
+    },
+    {
+      "teste": "CSP e nosniff enviados",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Sessão HttpOnly e SameSite",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Credenciais e código não são servidos",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Catálogo de impressão",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Pesquisa por palavra-chave",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Edições anteriores continuam disponíveis",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Filtro de edição identifica e restringe o histórico",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Limpar filtros retorna à listagem completa",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Contador de visualização é estável na mesma sessão",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Favoritar e desfavoritar persiste pela sessão",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Download entrega PDF e cabeçalhos de anexo",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Login administrador",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Dashboard e navegação administrativa",
+      "status": "aprovado"
+    },
+    {
+      "teste": "CA11 cadastro de edição pelo formulário",
+      "status": "aprovado"
+    },
+    {
+      "teste": "CA08 cadastro de projeto por HTTP",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Upload PNG válido é otimizado",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Upload PHP é recusado",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Extensão e MIME incompatíveis recusados",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PDF ativo é recusado",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Imagem sem descrição recusada",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PDF demonstrativo é aceito",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Material de outro projeto não pode ser removido pelo ID",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Cadastrar, editar e remover link e vídeo pelo backend",
+      "status": "aprovado"
+    },
+    {
+      "teste": "CA09 edição por HTTP",
+      "status": "aprovado"
+    },
+    {
+      "teste": "CA10 publicação removida após rascunho",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Login editor",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Editor não gerencia usuários por URL",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Editor não consulta auditoria",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Editor não exclui projeto por POST direto",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Logout encerra acesso",
+      "status": "aprovado"
+    }
+  ]
 }

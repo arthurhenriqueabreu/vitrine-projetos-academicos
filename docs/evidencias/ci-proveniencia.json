@@ -1,0 +1,332 @@
+{
+  "run_id": 45889043842,
+  "source_sha": "4b4a1e7d58c84407b1390f49453c32bfef3c2f18",
+  "evidence_commit": "9591cca58518a7b6f7c8f88dfe656e9722d8b767",
+  "files": [
+    {
+      "path": "docs/evidencias/ci/browser.json",
+      "sha": "662cd79fa82d1c504e7021bcf54ba5e1e0761621",
+      "size": 8033
+    },
+    {
+      "path": "docs/evidencias/ci/diagnostico.txt",
+      "sha": "319b6eb09125e3e7220ab84735093b5553a75845",
+      "size": 214
+    },
+    {
+      "path": "docs/evidencias/ci/http.json",
+      "sha": "b5578d8522d5f92ed7c1d9ce94676ec70ac593b2",
+      "size": 4457
+    },
+    {
+      "path": "docs/evidencias/ci/integration.json",
+      "sha": "af38b3ecdca7bccdecb5e52e74a6a65dac28b19d",
+      "size": 4020
+    },
+    {
+      "path": "docs/evidencias/ci/php-lint.txt",
+      "sha": "4372f7dfa43571646b5ddbfc9914d011d584705a",
+      "size": 1563
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/01-inicio-desktop.jpg",
+      "sha": "adc60572b2c275d8e74af4f90b4057a1e6117e7c",
+      "size": 222073
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/02-vitrine-desktop.jpg",
+      "sha": "492b3afdcd2800b816d348ce419f4a469e90a337",
+      "size": 311235
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/03-projeto-desktop.jpg",
+      "sha": "85d8be3ae39b2a1ef566efc283bd92475d56b144",
+      "size": 185176
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/04-login-desktop.jpg",
+      "sha": "356e8324a5ef9e8a51eb784c69a3f876ef7107fd",
+      "size": 67390
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/05-dashboard-desktop.jpg",
+      "sha": "dedffb6918914c682baad89816418bdffc7b4431",
+      "size": 123829
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/06-editor-projeto-desktop.jpg",
+      "sha": "145f6be16839d0104380c28ece7aa8b16b5c78d1",
+      "size": 210892
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/07-edicoes-desktop.jpg",
+      "sha": "01e9b7edf54aff720ab9fd64a8ea3af6bf6b23f4",
+      "size": 91383
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/08-autores-desktop.jpg",
+      "sha": "2b887fbf5af5f3d443c387b5ebccb5a4e6544e86",
+      "size": 95409
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/09-inicio-mobile.jpg",
+      "sha": "d9e2e9e074346ca7b948f359801ada2039371372",
+      "size": 169081
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/10-vitrine-mobile.jpg",
+      "sha": "31e4a955c3e0f076eedcf1a596985a9e5468fdd0",
+      "size": 269585
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/11-projeto-mobile.jpg",
+      "sha": "89501957f7a016d86fe8346640ef487e754243e1",
+      "size": 135652
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/12-dashboard-mobile.jpg",
+      "sha": "c396951e9b665478b430f1ab552dd3eaa33d0b03",
+      "size": 91520
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/13-formulario-mobile.jpg",
+      "sha": "5a1adc34db68ad8a1c5d10a41f5b13429146f05b",
+      "size": 105789
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-admin-auditoria.jpg",
+      "sha": "11e6e13587ce4a97635a91696a2e8c6ee5bf23fd",
+      "size": 332556
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-admin-cadastros-areas.jpg",
+      "sha": "c74c18c068d7d316796969874b56c9ee4283f6fa",
+      "size": 58092
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-admin-cadastros-autores.jpg",
+      "sha": "2b887fbf5af5f3d443c387b5ebccb5a4e6544e86",
+      "size": 95409
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-admin-cadastros-cursos.jpg",
+      "sha": "c64987cf76ea26fd98d556f917a6662b5ca27b66",
+      "size": 65605
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-admin-cadastros-edicoes.jpg",
+      "sha": "51e67ddcc6ff66c517ff84a0aec5e2f67215aaec",
+      "size": 71170
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-admin-cadastros-instituicoes.jpg",
+      "sha": "b4e371908742dc55b5c4bb573b59d78daadf24e2",
+      "size": 55991
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-admin-cadastros-orientadores.jpg",
+      "sha": "98f655d4d2075d87c966e386b2fb154dba44363e",
+      "size": 83915
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-admin-cadastros-palavras_chave.jpg",
+      "sha": "2d1a1798dcb1563f4b63bf1d042f1d708025ed70",
+      "size": 73280
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-admin-cadastros-subareas.jpg",
+      "sha": "f8bd624ed67cd228f15198a0c0916da4f450ee62",
+      "size": 68034
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-admin-cadastros-unidades_curriculares.jpg",
+      "sha": "5b9903712e6a83a733fbf28e887ea2f8845da066",
+      "size": 74875
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-admin-cadastros-usuarios.jpg",
+      "sha": "5d71f567419317c2b79ca5fb979d8a3d8aa0696a",
+      "size": 56013
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-admin-projetos-novo.jpg",
+      "sha": "b32b32fbec2c744e2bac08ccd9b2ed4161216396",
+      "size": 150797
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-admin-projetos.jpg",
+      "sha": "b48fd73899f2d4aefaaa863453f82084aff4e99a",
+      "size": 133665
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-admin.jpg",
+      "sha": "2fd43d49bc375c9ee6d016a277f2dfe200181f45",
+      "size": 123712
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-catalogo.jpg",
+      "sha": "4ce3f189bb5785e0ad0e493c779a54b115a2f3e5",
+      "size": 279519
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-edicoes.jpg",
+      "sha": "01e9b7edf54aff720ab9fd64a8ea3af6bf6b23f4",
+      "size": 91383
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-favoritos.jpg",
+      "sha": "9036640d3d64abcf6f8a18e883c47eb36f1777aa",
+      "size": 95074
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-inicio.jpg",
+      "sha": "2a918efd683d315106c708adc315a554910cbc92",
+      "size": 222333
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-login.jpg",
+      "sha": "5081de5bf27d7cb1dc6f1ed0a8984a185a828856",
+      "size": 67507
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-privacidade.jpg",
+      "sha": "e348045c823bc017030616612dc47c59959f97fd",
+      "size": 138298
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-projeto-1.jpg",
+      "sha": "24757772fb6ad13ca5e3028059b28123ee1ad2df",
+      "size": 185353
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/desktop-vitrine.jpg",
+      "sha": "63801abc99cbc5cf61602d58115f8d7a3bf565b5",
+      "size": 312934
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-admin-auditoria.jpg",
+      "sha": "18f0995a5ca85d92f3d338bfe7d6b9b63e79b2af",
+      "size": 240743
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-admin-cadastros-areas.jpg",
+      "sha": "3dfacfef882408a5063630eda0225e1cf660c61e",
+      "size": 40711
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-admin-cadastros-autores.jpg",
+      "sha": "46d6dda0874084284babffdcc465849cb7de3aee",
+      "size": 70500
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-admin-cadastros-cursos.jpg",
+      "sha": "7c69967c76c553a2e503134e0630f591b7f61f2f",
+      "size": 44955
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-admin-cadastros-edicoes.jpg",
+      "sha": "ba6825779673b56f1550700dbc18ee1ee06ea8e2",
+      "size": 48542
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-admin-cadastros-instituicoes.jpg",
+      "sha": "3e9afd7016849ed045ee4263a90fee79f2ab0387",
+      "size": 37239
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-admin-cadastros-orientadores.jpg",
+      "sha": "515e1075eb3ffb6c2a0b643ae719b1a00bcb6805",
+      "size": 61069
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-admin-cadastros-palavras_chave.jpg",
+      "sha": "a36218c7bd9cdd9687292a4aba792f935c4e9ed5",
+      "size": 45284
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-admin-cadastros-subareas.jpg",
+      "sha": "7b68571c24cdf217b4082f4fc5fdeb9e7cfcd7f3",
+      "size": 45083
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-admin-cadastros-unidades_curriculares.jpg",
+      "sha": "d8bbffafb2f2e931aa500c6f99bd932319369f5b",
+      "size": 49911
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-admin-cadastros-usuarios.jpg",
+      "sha": "c62695c3ec7785e4f78babd12441c37197bbd61c",
+      "size": 36021
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-admin-projetos-novo.jpg",
+      "sha": "5a1adc34db68ad8a1c5d10a41f5b13429146f05b",
+      "size": 105789
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-admin-projetos.jpg",
+      "sha": "253ad97d878fde9cfa6a750ba283ebf1bd6351d3",
+      "size": 92614
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-admin.jpg",
+      "sha": "c396951e9b665478b430f1ab552dd3eaa33d0b03",
+      "size": 91520
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-catalogo.jpg",
+      "sha": "d2f12613000f707d192bca6639638ee2afd76721",
+      "size": 252956
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-edicoes.jpg",
+      "sha": "886a52fb2531b5db1987eba822621be0e55d8c10",
+      "size": 66859
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-favoritos.jpg",
+      "sha": "004ea8759fb424f3fda67b8fe680b905609df35e",
+      "size": 63848
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-inicio.jpg",
+      "sha": "d9e2e9e074346ca7b948f359801ada2039371372",
+      "size": 169081
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-login.jpg",
+      "sha": "a8208b018773e18e228397e4fe55e79dcca26a70",
+      "size": 33496
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-privacidade.jpg",
+      "sha": "319cbba2d80ccdcfa324bd37645db4f23b73f12d",
+      "size": 110485
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-projeto-1.jpg",
+      "sha": "89501957f7a016d86fe8346640ef487e754243e1",
+      "size": 135652
+    },
+    {
+      "path": "docs/evidencias/ci/screenshots/mobile-vitrine.jpg",
+      "sha": "31e4a955c3e0f076eedcf1a596985a9e5468fdd0",
+      "size": 269585
+    },
+    {
+      "path": "docs/evidencias/ci/setup.txt",
+      "sha": "30efa3dbacd8debe1d9379a2aa017f9980898c9e",
+      "size": 196
+    },
+    {
+      "path": "docs/evidencias/ci/source-sha.txt",
+      "sha": "9362e9a1f729a15f25f80d1584399ee3875c892a",
+      "size": 41
+    },
+    {
+      "path": "docs/evidencias/ci/unit.json",
+      "sha": "06120d41b531ae28bd91e53320bab407a3eca32f",
+      "size": 3989
+    }
+  ]
+}

@@ -1,65 +1,53 @@
-# Resultados reais, correções e pendências
+# Resultados reais, correções e limites
 
-Registro de 26/11/2026. Os JSONs e logs em `docs/evidencias/` são saídas das execuções locais. Não existem screenshots ou resultados de banco fabricados.
+Validação real em 26/11/2026: **34 unitários, 34 de integração, 48 HTTP e 18 de navegador, todos aprovados**. Schema e demonstração foram executados em MySQL 8.4.13, com PHP 8.3 no GitHub Actions. Os 12 critérios CA01–CA12 passaram no Chromium automatizado; CA12 usou viewport de smartphone (390×844), complementada por tablet (768×1024) e desktop (1440×900). Não houve teste manual em aparelho físico, nem operação manual do navegador do usuário. A inspeção visual foi feita sobre screenshots reais.
 
-## Executado
+Execução auditável: [45889043842](https://github.com/arthurhenriqueabreu/vitrine-projetos-academicos/actions/runs/45889043842). Código testado: `4b4a1e7d58c84407b1390f49453c32bfef3c2f18`. Evidências em `docs/evidencias/ci/`, com JSONs e screenshots. As rodadas com falhas foram preservadas no histórico; nenhum resultado foi convertido de falha para aprovação sem nova execução.
 
-| Verificação | Resultado | Evidência |
-|---|---|---|
-| Testes unitários PHP | 34 aprovados, 0 reprovados | `evidencias/unit.json` |
-| Sintaxe dos arquivos PHP | Aprovada nos arquivos listados | `evidencias/php-lint.txt` |
-| Sintaxe JavaScript | `node --check` concluído sem erro | `evidencias/validacao.json` |
-| Sintaxe Python | Compilação concluída sem erro | `evidencias/validacao.json` |
-| Diagnóstico das extensões | PDO MySQL, mbstring, fileinfo e GD carregados com `-d extension=gd` | `evidencias/diagnostico.txt` |
-| Integração PDO/MySQL | Bloqueada antes de executar cenários | `evidencias/integration.json` |
-| Cliente HTTP contra localhost | Bloqueado antes de executar cenários | `evidencias/http.json` |
+O erro 10013 continua no contexto local restrito: quatro portas recusaram conexão enquanto um bind efêmero foi aceito. Não foi alterado firewall, antivírus, UAC ou ACL. Docker local não expôs um daemon utilizável; o navegador local de automação também estava indisponível. A alternativa autorizada de CI resolveu o bloqueio da validação, **não modificou a segurança do Windows nem comprovou execução local**. O banco de destino foi MySQL real, sem MariaDB, SQLite ou mocks no ambiente validado.
 
-O ambiente disponível usa PHP 8.0.30. O XAMPP contém MariaDB 10.4.32 e diretório de dados isolado em `runtime/mysql`, ignorado no Git. O processo do banco foi iniciado e indicou prontidão na porta 3308; a conexão do cliente e do PDO retornou Windows 10013 (socket proibido). Uma tentativa de pipe local também foi recusada com acesso negado. **Não foram criadas tabelas nem carregada a demo neste turno.** Não se afirma que os 12 projetos estejam instalados no banco deste computador.
+O repositório está publicado em [GitHub](https://github.com/arthurhenriqueabreu/vitrine-projetos-academicos). A pasta `.git` local permanece sem permissão de escrita nesta sessão; os commits foram criados pela API autorizada e pelo CI. RNF18 (servidor Senac), HTTPS de produção, testes em outros navegadores, auditoria completa de acessibilidade e restauração real de backup continuam pendentes.
 
-O servidor PHP indicou início em `127.0.0.1:8080`, mas o cliente HTTP deste ambiente recebeu o mesmo bloqueio de socket. Isso não comprova navegação ou funcionamento do site. O diagnóstico final comprovou gravação real nas três pastas de storage. A consulta inicial is_writable retornava falso neste ambiente Windows apesar de a escrita funcionar; o diagnóstico passou a testar criação e remoção de um arquivo temporário. Confira as permissões novamente ao executar sob o usuário do Apache.
+## Execuções e evidências
 
-## Cobertura automatizada preparada, ainda não executada
+| Suíte | Aprovados | Reprovados | Evidência |
+|---|---:|---:|---|
+| Unitários PHP | 34 | 0 | `evidencias/ci/unit.json` |
+| Integração MySQL | 34 | 0 | `evidencias/ci/integration.json` |
+| HTTP | 48 | 0 | `evidencias/ci/http.json` |
+| Navegador Chromium | 18 | 0 | `evidencias/ci/browser.json` |
+| Mutação local | 7 detectadas | 0 não detectadas | `evidencias/mutation.json` |
 
-- `tests/integration.php`: persistência e relacionamentos, edição concorrente, estados, autorização de exclusão, curso/instituição/UC/subárea incompatíveis, contagens, busca, mass assignment, cascata e CRUD de todos os cadastros.
-- `tests/http_test.py`: página pública, busca/filtros, detalhes, acesso por ID, sessão, CSRF, login, SQLi, escape de XSS, cabeçalhos, CRUD, edição, upload válido/inválido, MIME, PDF ativo, descrição acessível e editor sem privilégio administrativo.
-- `.github/workflows/tests.yml`: MySQL 8.4 real, PHP, setup e as três suítes. Workflow não publicado/não executado.
-- `docs/criterios-aceitacao.md`: os 12 CA, com resultado real marcado como não executado; roteiro manual de celular, teclado, leitor de tela e múltiplos navegadores.
+Foram verificadas 49 combinações de página/viewport: 22 páginas em desktop, as mesmas 22 em mobile e cinco páginas principais em tablet. Há screenshots das páginas públicas e administrativas, gerados após rolagem para carregar as imagens lazy. O código e os JSONs identificam o commit efetivamente testado. Logs e artefatos completos também estão na execução acima. O servidor usado no CI é temporário e não representa hospedagem pública do site.
 
-## Problemas encontrados e corrigidos
+## Falhas encontradas e correções
 
-1. A rota atual não chegava ao escopo do template: o menu ativo e a barra administrativa podiam desaparecer. A função `view` agora compartilha a rota; o teste de navegação ativa passou.
-2. Faltava reescrita de URLs no Apache dentro de `public/`. Acrescentado `.htaccess`; ainda requer homologação no Apache.
-3. Os cards sem imagem apontavam para SVGs inexistentes. Quatro imagens locais foram criadas.
-4. O total público possuía um sinal de `+` decorativo. Removido para exibir a quantidade exata.
-5. A busca inicial tratava todos os nomes digitados como uma única sequência. Os termos agora são combinados, permitindo encontrar autores diferentes do mesmo projeto; teste unitário passou.
-6. Serviços de projeto/upload receberam verificação explícita de perfil, além das proteções das rotas. IDs de associação com formatos não numéricos passaram a ser recusados.
-7. Uma falha de banco ao renderizar erro poderia tentar consultar autenticação novamente. A página de erro agora dispensa nova consulta de sessão ao banco.
-8. GD estava desativado no PHP CLI. Scripts de execução carregam a extensão explicitamente e o setup verifica sua presença antes da carga de demonstração. Não foi alterado o PHP global da máquina.
-9. O nome inicial do teste Python sombreava o módulo padrão `http`. Renomeado para `http_test.py`; agora o teste inicia e registra o bloqueio real de socket.
-10. O teste de escrita do diagnóstico e uma imagem PNG de teste tinham resultados enganosos (ACL e CRC). O diagnóstico agora grava e remove um arquivo real; a fixture PNG é gerada com CRC válido.
-11. Senhas demo passaram a exigir valores distintos e limite de 12–72 caracteres. Não há senha padrão versionada na aplicação.
+1. Fixtures unitários podiam conter erro adicional de colaborador duplicado. A base passou a ser válida; asserções conferem mensagem/status específico e exigem retorno `true`.
+2. Testes de integração que aceitavam qualquer exceção passaram a exigir a rejeição correta (403/404, mensagem ou SQLSTATE 23000 e códigos FK 1451/1452).
+3. Uma URL de teste com acento não estava codificada; a primeira execução HTTP teve 39 aprovações e uma falha. Corrigida a URL e refeita a execução.
+4. Saída passada por `tee` escondia o exit code das suítes. O workflow agora usa Bash com `pipefail` e resultado conjunto obrigatório.
+5. Ubuntu latest mudou para uma versão não suportada pelo Playwright fixado. Ambiente de teste fixado em Ubuntu 24.04.
+6. Um rótulo em caixa alta por CSS gerava falso negativo em CA06. O teste normaliza caixa visual mantendo a exigência de conteúdo.
+7. A captura de página inteira não carregava todas as imagens lazy; a rolagem suave atrasava a visita às partes inferiores. A captura agora percorre a página com rolagem instantânea e exige imagens completas. Não foi alterado o CSS da aplicação.
+8. A inspeção de screenshots reais revelou biografia/instituição do colaborador duplicada no detalhe. A repetição foi removida do template e CA06 recebeu uma asserção de regressão.
+9. Evidências de execuções anteriores podiam permanecer no diretório do CI. Cada execução agora limpa apenas seu diretório gerado e grava o SHA da origem.
+10. A inspeção visual da home mobile revelou texto cortado pelo grid apesar de o documento não ter overflow horizontal. Corrigida somente a coluna mobile com `minmax(0,1fr)` e largura mínima zero; CA12 passou a verificar os retângulos de texto, além da largura da página. Aprovações anteriores de CA12 não cobriam esse defeito visual.
 
-## Pendências e limites materiais
+Histórico: execuções com falhas são consultáveis no GitHub; resultados anteriores selecionados estão em `evidencias/historico/`. Não são evidências de aprovação do código final.
 
-| Item | Situação | Como concluir |
-|---|---|---|
-| RNF17 / MySQL | Sem execução em MySQL real | Provisionar MySQL 8 e executar schema, demo e integração |
-| Fluxos persistentes / CA01–CA11 | Código implementado, não homologado | Executar suites integration e HTTP em ambiente com acesso local |
-| Responsividade / CA12 | CSS implementado; sem inspeção visual real | Testar resoluções e dispositivos do roteiro |
-| Compatibilidade e acessibilidade | Práticas implementadas; sem auditoria completa | Testar navegadores, leitor de tela, contraste e zoom |
-| Desempenho | Paginação/índices implementados; sem benchmark | Medir latência e carga com volume representativo |
-| Backup/restauração | Scripts e procedimento presentes, não executados | Restaurar banco+uploads em destino isolado e comparar |
-| HTTPS e RNF18 | Preparados; sem acesso ao servidor Senac | Configurar domínio/TLS, homologar e publicar |
-| Git e GitHub | Sem remoto; gravação em `.git/index.lock` negada, nenhum commit criado; conector sem criação de repositório | Em terminal com permissão, criar commits, criar repositório vazio e enviar |
-| LGPD em operação real | Página e minimização; definições institucionais pendentes | Definir base legal, responsáveis, contato e autorizações |
-| QR Code | Opcional não implementado | Acrescentar após homologar todos os obrigatórios |
+## Windows 10013 e execução local
 
-Favoritos expiram com a sessão e retenção; não são sincronizados entre dispositivos. Visualizações contam sessões e não pessoas únicas. Catálogo PDF usa a função imprimir/salvar do navegador; não há gerador PDF no servidor. Materiais demonstrativos não representam pesquisa realizada nem vídeo real dos projetos. O filtro básico de PDF não substitui verificação de malware. Não há certificação de conformidade integral com LGPD ou WCAG.
+O diagnóstico `bin/diagnose-network.py` registrou 10013 nas portas 3306, 3308, 8080 e 49153, com bind efêmero bem sucedido e token de baixa integridade. Isso é compatível com restrição do contexto de execução; a regra específica de WFP/firewall não foi determinada. Não se atribui o erro a uma senha MySQL ou a uma porta ocupada sem evidência. Docker não disponibilizou o pipe do daemon, e a conexão de automação do navegador local estava indisponível. Nenhuma regra de segurança foi desligada. A alternativa expressamente autorizada de GitHub Actions permitiu a validação real.
 
-## Critério para considerar pronto
+## Limites restantes
 
-Não basta existirem 47 correspondências na matriz: é necessário executar o banco MySQL, testar os fluxos e os 12 CA, resolver falhas eventualmente encontradas e registrar a URL Senac. A entrega atual reúne implementação, testes reproduzíveis e evidências parciais honestas; as pendências acima impedem afirmar homologação completa.
+- RNF18 e HTTPS de produção: sem credenciais/domínio/certificado do servidor Senac; não implantado.
+- Testes manuais de interação no computador do usuário e em smartphone físico: não executados. Os fluxos foram automatizados em navegador real no CI.
+- Firefox, Safari e Edge, leitor de tela e conformidade WCAG completa: não auditados. Teclado e menu foram exercitados no Chromium.
+- PDFs: bytes, tipo MIME e download foram validados; o iframe existe. A renderização nativa de PDF em headless/múltiplos navegadores não foi homologada e pode aparecer vazia na captura. Há links para visualizar e baixar.
+- Vídeos: cadastro/edição/remoção e domínio de incorporação verificados; reprodução e disponibilidade remota não certificadas. O canal institucional demo não é vídeo real do projeto fictício.
+- Backup/restauração: scripts presentes, mas restauração real não executada. Desempenho em grande volume não medido.
+- LGPD operacional: base legal, contato e autorizações definitivas dependem da instituição. Dados de demonstração permanecem fictícios.
+- QR Code opcional não implementado. Favoritos permanecem por sessão, sem sincronização entre aparelhos.
 
-## Controle de versão local
-
-A tentativa real de `git add` retornou `Unable to create .git/index.lock: Permission denied`. Não houve commit nem push. Em um terminal normal com permissão de escrita no repositório, use `git add .` e `git commit -m "Implementa vitrine acadêmica, painel, segurança e documentação"`. Revise os arquivos ignorados e não force a inclusão de `.env`, `runtime` ou backups. O projeto não alterou nenhum outro repositório.
+O sistema foi publicado como código no GitHub, com commits descritivos. Isso não equivale à publicação do site no servidor do Senac. A identidade visual foi preservada; as mudanças de apresentação corrigiram a biografia duplicada e o texto cortado na home mobile.

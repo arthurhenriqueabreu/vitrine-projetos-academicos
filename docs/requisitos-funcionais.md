@@ -1,55 +1,59 @@
 # Matriz dos 47 requisitos funcionais
 
-Fonte: enunciado de 14 páginas, RF01–RF47. Os textos abaixo sintetizam cada item sem mudar seu objetivo.
+Fonte: Recuperação(1).pdf, 14 páginas; comparação textual conferida com a versão (2).
 
-**Legenda:** IC = implementado no código, integração ainda não validada. Todos os 47 estão em IC; isso não significa 47 critérios aprovados. Testes unitários aprovam partes de RF13/RF31 e proteções, mas não comprovam o fluxo completo. A coluna de arquivo permite revisão objetiva.
+**Legenda:** V = fluxo básico exercitado em MySQL/HTTP/Chromium no CI indicado abaixo. Não significa cobertura exaustiva de entradas, navegadores ou produção. A coluna aponta a evidência específica.
 
-| Código | Requisito | Implementação | Estado | Validação |
+Execução: https://github.com/arthurhenriqueabreu/vitrine-projetos-academicos/actions/runs/45889043842. Código: `4b4a1e7d58c84407b1390f49453c32bfef3c2f18`.
+
+| Código | Requisito | Implementação | Estado | Evidência |
 |---|---|---|---|---|
-| RF01 | Identificação institucional na página inicial | `views/home.php; views/layout.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF02 | Descrição e objetivos da mostra | `views/home.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF03 | Total de trabalhos publicados | `ProjectRepository::listing; views/home.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF04 | Áreas disponíveis | `ProjectRepository::counts; views/home.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF05 | Acesso à vitrine | `views/home.php; views/layout.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF06 | Projetos em destaque | `ProjectRepository::listing(featured); views/home.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF07 | Menu de navegação | `views/layout.php; public/assets/app.js` | IC | Revisão de código; execução E2E bloqueada |
-| RF08 | Listagem dos trabalhos publicados | `ProjectRepository::listing; views/catalog.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF09 | Organização por área | `ProjectRepository::where; views/catalog.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF10 | Contagem por área | `ProjectRepository::counts` | IC | Revisão de código; execução E2E bloqueada |
-| RF11 | Filtro por área | `ProjectRepository::where; views/catalog.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF12 | Pesquisa por título | `ProjectRepository::where` | IC | Revisão de código; execução E2E bloqueada |
-| RF13 | Pesquisa por um ou mais autores | `ProjectRepository::where; testes de termos múltiplos` | IC | Revisão de código; execução E2E bloqueada |
-| RF14 | Pesquisa por instituição | `ProjectRepository::where` | IC | Revisão de código; execução E2E bloqueada |
-| RF15 | Pesquisa por palavras-chave | `ProjectRepository::where` | IC | Revisão de código; execução E2E bloqueada |
-| RF16 | Atualização conforme filtros | `public/index.php; views/catalog.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF17 | Mensagem sem resultados | `views/catalog.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF18 | Remover filtros | `views/catalog.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF19 | Selecionar projeto e ver detalhes | `views/partials/cards.php; rota projeto/{id}` | IC | Revisão de código; execução E2E bloqueada |
-| RF20 | Título completo | `views/detail.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF21 | Nomes dos autores | `ProjectRepository::detail; views/detail.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF22 | Nome do orientador | `ProjectRepository::detail; views/detail.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF23 | Instituição e localização | `ProjectRepository::detail; views/detail.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF24 | Área e subárea | `views/detail.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF25 | Resumo | `views/detail.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF26 | Palavras-chave | `views/detail.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF27 | Galeria de imagens | `views/detail.php; rota arquivo/{id}` | IC | Revisão de código; execução E2E bloqueada |
-| RF28 | Links para vídeos | `UploadService::link; views/detail.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF29 | Visualização/download de PDF | `views/detail.php; rota arquivo/{id}` | IC | Revisão de código; execução E2E bloqueada |
-| RF30 | Links externos | `UploadService::link; views/detail.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF31 | Administração autenticada | `Auth::requireUser; rotas admin` | IC | Revisão de código; execução E2E bloqueada |
-| RF32 | Cadastrar trabalhos | `ProjectService::save; views/admin/project-form.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF33 | Editar trabalhos | `ProjectService::save; versão otimista` | IC | Revisão de código; execução E2E bloqueada |
-| RF34 | Excluir trabalhos | `ProjectService::delete; administrador` | IC | Revisão de código; execução E2E bloqueada |
-| RF35 | Rascunho, publicado, arquivado | `ProjectService::save; schema.sql` | IC | Revisão de código; execução E2E bloqueada |
-| RF36 | CRUD de áreas | `CatalogService; views/admin/catalog.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF37 | CRUD de instituições | `CatalogService; views/admin/catalog.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF38 | Gerenciar autores e orientadores | `CatalogService; views/admin/catalog.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF39 | Upload de imagens e documentos | `UploadService::store; views/admin/project-form.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF40 | Cadastro de vídeos e links | `UploadService::link; views/admin/project-form.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF41 | Indicadores administrativos | `rota admin; views/admin/dashboard.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF42 | Gerenciar edições | `CatalogService; views/admin/catalog.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF43 | Cadastrar diferentes edições | `CatalogService; database/schema.sql` | IC | Revisão de código; execução E2E bloqueada |
-| RF44 | Associar projeto à edição | `ProjectService::save; FK trabalhos.edicao_id` | IC | Revisão de código; execução E2E bloqueada |
-| RF45 | Selecionar edição pública | `views/editions.php; views/catalog.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF46 | Histórico de edições | `rota edicoes; views/editions.php` | IC | Revisão de código; execução E2E bloqueada |
-| RF47 | Identificar visualmente edição selecionada | `views/catalog.php: edition-selected` | IC | Revisão de código; execução E2E bloqueada |
+| RF01 | Identificação institucional na página inicial | `views/home.php; views/layout.php` | V | browser CA01–CA02; screenshots início; integration destaques |
+| RF02 | Descrição e objetivos da mostra | `views/home.php` | V | browser CA01–CA02; screenshots início; integration destaques |
+| RF03 | Total de trabalhos publicados | `ProjectRepository::listing; views/home.php` | V | browser CA01–CA02; screenshots início; integration destaques |
+| RF04 | Áreas disponíveis | `ProjectRepository::counts; views/home.php` | V | browser CA01–CA02; screenshots início; integration destaques |
+| RF05 | Acesso à vitrine | `views/home.php; views/layout.php` | V | browser CA01–CA02; screenshots início; integration destaques |
+| RF06 | Projetos em destaque | `ProjectRepository::listing(featured); views/home.php` | V | browser CA01–CA02; screenshots início; integration destaques |
+| RF07 | Menu de navegação | `views/layout.php; public/assets/app.js` | V | browser CA01–CA02; screenshots início; integration destaques |
+| RF08 | Listagem dos trabalhos publicados | `ProjectRepository::listing; views/catalog.php` | V | http pesquisa/filtros/histórico; integration contadores/palavra-chave; browser CA03–CA05 |
+| RF09 | Organização por área | `ProjectRepository::where; views/catalog.php` | V | http pesquisa/filtros/histórico; integration contadores/palavra-chave; browser CA03–CA05 |
+| RF10 | Contagem por área | `ProjectRepository::counts` | V | http pesquisa/filtros/histórico; integration contadores/palavra-chave; browser CA03–CA05 |
+| RF11 | Filtro por área | `ProjectRepository::where; views/catalog.php` | V | http pesquisa/filtros/histórico; integration contadores/palavra-chave; browser CA03–CA05 |
+| RF12 | Pesquisa por título | `ProjectRepository::where` | V | http pesquisa/filtros/histórico; integration contadores/palavra-chave; browser CA03–CA05 |
+| RF13 | Pesquisa por um ou mais autores | `ProjectRepository::where; testes de termos múltiplos` | V | http pesquisa/filtros/histórico; integration contadores/palavra-chave; browser CA03–CA05 |
+| RF14 | Pesquisa por instituição | `ProjectRepository::where` | V | http pesquisa/filtros/histórico; integration contadores/palavra-chave; browser CA03–CA05 |
+| RF15 | Pesquisa por palavras-chave | `ProjectRepository::where` | V | http pesquisa/filtros/histórico; integration contadores/palavra-chave; browser CA03–CA05 |
+| RF16 | Atualização conforme filtros | `public/index.php; views/catalog.php` | V | http pesquisa/filtros/histórico; integration contadores/palavra-chave; browser CA03–CA05 |
+| RF17 | Mensagem sem resultados | `views/catalog.php` | V | http pesquisa/filtros/histórico; integration contadores/palavra-chave; browser CA03–CA05 |
+| RF18 | Remover filtros | `views/catalog.php` | V | http pesquisa/filtros/histórico; integration contadores/palavra-chave; browser CA03–CA05 |
+| RF19 | Selecionar projeto e ver detalhes | `views/partials/cards.php; rota projeto/{id}` | V | browser CA06; http detalhes, PDF e materiais; screenshots projeto |
+| RF20 | Título completo | `views/detail.php` | V | browser CA06; http detalhes, PDF e materiais; screenshots projeto |
+| RF21 | Nomes dos autores | `ProjectRepository::detail; views/detail.php` | V | browser CA06; http detalhes, PDF e materiais; screenshots projeto |
+| RF22 | Nome do orientador | `ProjectRepository::detail; views/detail.php` | V | browser CA06; http detalhes, PDF e materiais; screenshots projeto |
+| RF23 | Instituição e localização | `ProjectRepository::detail; views/detail.php` | V | browser CA06; http detalhes, PDF e materiais; screenshots projeto |
+| RF24 | Área e subárea | `views/detail.php` | V | browser CA06; http detalhes, PDF e materiais; screenshots projeto |
+| RF25 | Resumo | `views/detail.php` | V | browser CA06; http detalhes, PDF e materiais; screenshots projeto |
+| RF26 | Palavras-chave | `views/detail.php` | V | browser CA06; http detalhes, PDF e materiais; screenshots projeto |
+| RF27 | Galeria de imagens | `views/detail.php; rota arquivo/{id}` | V | browser CA06; http detalhes, PDF e materiais; screenshots projeto |
+| RF28 | Links para vídeos | `UploadService::link; views/detail.php` | V | browser CA06; http detalhes, PDF e materiais; screenshots projeto |
+| RF29 | Visualização/download de PDF | `views/detail.php; rota arquivo/{id}` | V | browser CA06; http detalhes, PDF e materiais; screenshots projeto |
+| RF30 | Links externos | `UploadService::link; views/detail.php` | V | browser CA06; http detalhes, PDF e materiais; screenshots projeto |
+| RF31 | Administração autenticada | `Auth::requireUser; rotas admin` | V | http login/CSRF/perfis; browser CA07/LOGIN |
+| RF32 | Cadastrar trabalhos | `ProjectService::save; views/admin/project-form.php` | V | integration CA08–CA10/cascata/arquivado; http CRUD; browser CA08–CA10 |
+| RF33 | Editar trabalhos | `ProjectService::save; versão otimista` | V | integration CA08–CA10/cascata/arquivado; http CRUD; browser CA08–CA10 |
+| RF34 | Excluir trabalhos | `ProjectService::delete; administrador` | V | integration CA08–CA10/cascata/arquivado; http CRUD; browser CA08–CA10 |
+| RF35 | Rascunho, publicado, arquivado | `ProjectService::save; schema.sql` | V | integration CA08–CA10/cascata/arquivado; http CRUD; browser CA08–CA10 |
+| RF36 | CRUD de áreas | `CatalogService; views/admin/catalog.php` | V | integration CRUD da entidade; screenshots cadastros |
+| RF37 | CRUD de instituições | `CatalogService; views/admin/catalog.php` | V | integration CRUD da entidade; screenshots cadastros |
+| RF38 | Gerenciar autores e orientadores | `CatalogService; views/admin/catalog.php` | V | integration CRUD da entidade; screenshots cadastros |
+| RF39 | Upload de imagens e documentos | `UploadService::store; views/admin/project-form.php` | V | http uploads e CRUD de link/vídeo; browser UPLOAD |
+| RF40 | Cadastro de vídeos e links | `UploadService::link; views/admin/project-form.php` | V | http uploads e CRUD de link/vídeo; browser UPLOAD |
+| RF41 | Indicadores administrativos | `rota admin; views/admin/dashboard.php` | V | browser LOGIN compara indicadores 12/10/1/1; screenshot dashboard |
+| RF42 | Gerenciar edições | `CatalogService; views/admin/catalog.php` | V | integration CRUD edicoes; browser CA11; http seleção e histórico de edições |
+| RF43 | Cadastrar diferentes edições | `CatalogService; database/schema.sql` | V | integration CRUD edicoes; browser CA11; http seleção e histórico de edições |
+| RF44 | Associar projeto à edição | `ProjectService::save; FK trabalhos.edicao_id` | V | integration CRUD edicoes; browser CA11; http seleção e histórico de edições |
+| RF45 | Selecionar edição pública | `views/editions.php; views/catalog.php` | V | integration CRUD edicoes; browser CA11; http seleção e histórico de edições |
+| RF46 | Histórico de edições | `rota edicoes; views/editions.php` | V | integration CRUD edicoes; browser CA11; http seleção e histórico de edições |
+| RF47 | Identificar visualmente edição selecionada | `views/catalog.php: edition-selected` | V | integration CRUD edicoes; browser CA11; http seleção e histórico de edições |
+
+Limites: RF28 valida cadastro/link e geração de incorporação, não reprodução audiovisual remota; RF29 valida bytes e cabeçalhos do download e existência do visualizador, não renderização nativa de PDF em todos os navegadores. Os testes completos e screenshots estão em `evidencias/ci/`.

@@ -8,11 +8,15 @@ O sistema apresenta projetos acadêmicos publicados, conecta seus materiais e or
 
 ## Situação da entrega
 
-Os 47 requisitos funcionais possuem implementação identificada em [docs/requisitos-funcionais.md](docs/requisitos-funcionais.md). Isso indica cobertura no código, **não aprovação dos testes de integração**. Foram executados 34 testes unitários com aprovação, validação sintática de PHP/JavaScript/Python e revisão do código. A conexão PDO e o cliente HTTP foram bloqueados neste ambiente Windows com erro de socket 10013. Os testes de integração, uploads por HTTP e os critérios de aceitação dependentes da execução permanecem **não executados/bloqueados**. Não houve publicação no servidor do Senac ou no GitHub.
+Validação real em 26/11/2026: **34 unitários, 34 de integração, 48 HTTP e 18 de navegador, todos aprovados**. Schema e demonstração foram executados em MySQL 8.4.13, com PHP 8.3 no GitHub Actions. Os 12 critérios CA01–CA12 passaram no Chromium automatizado; CA12 usou viewport de smartphone (390×844), complementada por tablet (768×1024) e desktop (1440×900). Não houve teste manual em aparelho físico, nem operação manual do navegador do usuário. A inspeção visual foi feita sobre screenshots reais.
 
-O XAMPP disponível contém MariaDB 10.4, não Oracle MySQL. O projeto usa exclusivamente PDO MySQL e SQL compatível com MySQL 8, e inclui CI com MySQL 8.4; a compatibilidade e o RNF17 ainda precisam de execução real nesse servidor. Não há fallback, SQLite, dados simulados em memória ou persistência no navegador.
+Execução auditável: [45889043842](https://github.com/arthurhenriqueabreu/vitrine-projetos-academicos/actions/runs/45889043842). Código testado: `4b4a1e7d58c84407b1390f49453c32bfef3c2f18`. Evidências em `docs/evidencias/ci/`, com JSONs e screenshots. As rodadas com falhas foram preservadas no histórico; nenhum resultado foi convertido de falha para aprovação sem nova execução.
 
-Consulte [resultados e pendências](docs/testes-e-limitacoes.md) antes da avaliação. A aplicação não foi certificada como pronta para produção.
+O erro 10013 continua no contexto local restrito: quatro portas recusaram conexão enquanto um bind efêmero foi aceito. Não foi alterado firewall, antivírus, UAC ou ACL. Docker local não expôs um daemon utilizável; o navegador local de automação também estava indisponível. A alternativa autorizada de CI resolveu o bloqueio da validação, **não modificou a segurança do Windows nem comprovou execução local**. O banco de destino foi MySQL real, sem MariaDB, SQLite ou mocks no ambiente validado.
+
+O repositório está publicado em [GitHub](https://github.com/arthurhenriqueabreu/vitrine-projetos-academicos). A pasta `.git` local permanece sem permissão de escrita nesta sessão; os commits foram criados pela API autorizada e pelo CI. RNF18 (servidor Senac), HTTPS de produção, testes em outros navegadores, auditoria completa de acessibilidade e restauração real de backup continuam pendentes.
+
+Consulte [resultados e pendências](docs/testes-e-limitacoes.md) e as matrizes de requisitos.
 
 ## Funcionalidades
 
@@ -162,7 +166,7 @@ $env:DEMO_EDITOR_PASSWORD='SENHA_EDITOR_DEMO'
 python tests/http_test.py
 ```
 
-As senhas dos exemplos precisam ter 12 a 72 caracteres e ser distintas. `TEST_URL` permite alterar a URL dos testes. `tests/integration.php` testa persistência, FKs, CRUD, concorrência, contadores e permissões. `tests/http_test.py` cobre formulários, sessões, autorização, upload e rotas públicas. [CA01–CA12](docs/criterios-aceitacao.md) incluem o roteiro manual de responsividade; não há alegação de teste em smartphone sem execução real. O workflow CI está preparado, mas ainda não executado/publicado.
+As senhas dos exemplos precisam ter 12 a 72 caracteres e ser distintas. `TEST_URL` permite alterar a URL dos testes. `tests/integration.php` testa persistência, FKs, CRUD, concorrência, contadores e permissões. `tests/http_test.py` cobre formulários, sessões, autorização, upload e rotas públicas. [CA01–CA12](docs/criterios-aceitacao.md) incluem o roteiro manual de responsividade; não há alegação de teste em smartphone sem execução real. O workflow CI foi executado com MySQL real; resultados e screenshots estão versionados em `docs/evidencias/ci/`.
 
 ## Publicação no Senac
 
@@ -170,4 +174,4 @@ Siga [docs/implantacao.md](docs/implantacao.md) e adapte `deploy/apache-vhost.co
 
 ## Referência e autoria
 
-Enunciado: `Recuperação(2).pdf`, 14 páginas, versão disponibilizada na conversa; matriz dos 47 RF, 18 RNF, 14 RN e 12 CA em `docs/`. A referência [FECCIF 2025](https://feccif.com.br/vitrine-de-trabalhos-2025/?area=exatas) foi consultada; o conteúdo recuperável mostrou carregamento e campo de busca. A organização por áreas e busca serviu de inspiração funcional; não foram copiados marca, textos ou código do site. A inspeção textual do PDF não identificou instruções alheias ao trabalho, conforme [docs/analise-enunciado.md](docs/analise-enunciado.md).
+Enunciado original: `Recuperação(1).pdf`, 14 páginas (texto comparado à versão `Recuperação(2).pdf`, com conteúdo extraído idêntico), versão disponibilizada na conversa; matriz dos 47 RF, 18 RNF, 14 RN e 12 CA em `docs/`. A referência [FECCIF 2025](https://feccif.com.br/vitrine-de-trabalhos-2025/?area=exatas) foi consultada; o conteúdo recuperável mostrou carregamento e campo de busca. A organização por áreas e busca serviu de inspiração funcional; não foram copiados marca, textos ou código do site. A inspeção textual do PDF não identificou instruções alheias ao trabalho, conforme [docs/analise-enunciado.md](docs/analise-enunciado.md).

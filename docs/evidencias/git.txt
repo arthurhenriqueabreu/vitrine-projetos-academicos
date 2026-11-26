@@ -1,2 +1,4 @@
-git add: fatal: Unable to create 'C:/Users/User/Documents/Dev/vitrine-projetos-academicos/.git/index.lock': Permission denied
-Sem commit ou push nesta sessão.
+Git local: gravação em .git/index.lock negada nesta sessão.
+Publicação e commits remotos executados pela API autorizada e pelo GitHub Actions.
+Repositório: https://github.com/arthurhenriqueabreu/vitrine-projetos-academicos
+Código validado: 4b4a1e7d58c84407b1390f49453c32bfef3c2f18

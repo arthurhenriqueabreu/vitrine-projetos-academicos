@@ -1,0 +1,8 @@
+OK pdo_mysql
+OK mbstring
+OK fileinfo
+OK gd
+OK storage/uploads grav├ível (grava├º├úo real)
+OK storage/logs grav├ível (grava├º├úo real)
+OK storage/backups grav├ível (grava├º├úo real)
+FALHA conex├úo PDO: SQLSTATE[HY000] [2002] Foi feita uma tentativa de acesso a um soquete de uma maneira que ├® proibida pelas permiss├Áes de acesso
