@@ -1,0 +1,8 @@
+OK pdo_mysql
+OK mbstring
+OK fileinfo
+OK gd
+OK storage/uploads gravável (gravação real)
+OK storage/logs gravável (gravação real)
+OK storage/backups gravável (gravação real)
+OK conexão PDO; servidor 8.4.13

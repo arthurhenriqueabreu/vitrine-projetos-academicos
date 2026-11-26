@@ -1,0 +1,3 @@
+Estrutura criada ou já existente.
+Demonstração criada: 12 projetos, 10 publicados, 2 edições.
+Usuários: admin@vitrine.example e editor@vitrine.example. Use as senhas fornecidas no ambiente.
