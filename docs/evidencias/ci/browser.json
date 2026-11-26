@@ -1,8 +1,8 @@
 {
   "suite": "browser",
-  "data": "2026-11-26T19:56:42.264Z",
+  "data": "2026-11-26T20:05:59.567Z",
   "browser": "Chromium Playwright",
-  "source_sha": "6db8abc77d5148ab93277aa262d6436182e64d95",
+  "source_sha": "8088f506c21b6023df9d7796c344781c8f4849e4",
   "aprovados": 18,
   "reprovados": 0,
   "resultados": [
@@ -10,37 +10,37 @@
       "codigo": "CA01",
       "teste": "Página institucional no navegador",
       "status": "aprovado",
-      "ms": 949
+      "ms": 948
     },
     {
       "codigo": "CA02",
       "teste": "Vitrine lista publicados",
       "status": "aprovado",
-      "ms": 1049
+      "ms": 1044
     },
     {
       "codigo": "CA03",
       "teste": "Filtro por área pela interface",
       "status": "aprovado",
-      "ms": 99
+      "ms": 101
     },
     {
       "codigo": "CA04",
       "teste": "Busca por título pela interface",
       "status": "aprovado",
-      "ms": 637
+      "ms": 642
     },
     {
       "codigo": "CA05",
       "teste": "Busca por autor pela interface",
       "status": "aprovado",
-      "ms": 286
+      "ms": 282
     },
     {
       "codigo": "CA06",
       "teste": "Detalhes e materiais no navegador",
       "status": "aprovado",
-      "ms": 1029
+      "ms": 1030
     },
     {
       "codigo": "CA07",
@@ -52,61 +52,61 @@
       "codigo": "LOGIN",
       "teste": "Autenticação e dashboard reais",
       "status": "aprovado",
-      "ms": 874
+      "ms": 875
     },
     {
       "codigo": "CA11",
       "teste": "Cadastro de edição e disponibilidade no projeto",
       "status": "aprovado",
-      "ms": 1122
+      "ms": 1119
     },
     {
       "codigo": "CA08",
       "teste": "Cadastro de trabalho pelo formulário",
       "status": "aprovado",
-      "ms": 1688
+      "ms": 1669
     },
     {
       "codigo": "CA09",
       "teste": "Edição de trabalho pelo formulário",
       "status": "aprovado",
-      "ms": 1138
+      "ms": 1123
     },
     {
       "codigo": "UPLOAD",
       "teste": "Upload e visualização de imagem pelo formulário",
       "status": "aprovado",
-      "ms": 4154
+      "ms": 4110
     },
     {
       "codigo": "CA10",
       "teste": "Rascunho removido da vitrine",
       "status": "aprovado",
-      "ms": 1147
+      "ms": 1127
     },
     {
       "codigo": "DESKTOP",
       "teste": "Todas as páginas públicas e administrativas em desktop",
       "status": "aprovado",
-      "ms": 19329
+      "ms": 19229
     },
     {
       "codigo": "CA12",
       "teste": "Todas as páginas em viewport de smartphone e menu acessível",
       "status": "aprovado",
-      "ms": 25304
+      "ms": 25136
     },
     {
       "codigo": "TABLET",
       "teste": "Páginas principais em tablet",
       "status": "aprovado",
-      "ms": 2664
+      "ms": 2653
     },
     {
       "codigo": "TECLADO",
       "teste": "Link de pular conteúdo utilizável por teclado",
       "status": "aprovado",
-      "ms": 554
+      "ms": 546
     },
     {
       "codigo": "SEM_ERROS_JS",
