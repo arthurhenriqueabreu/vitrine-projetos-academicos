@@ -1,8 +1,8 @@
 {
     "suite": "integration",
-    "data": "2026-11-26T16:50:50-03:00",
+    "data": "2026-11-26T16:54:56-03:00",
     "servidor": "8.4.13",
-    "aprovados": 28,
+    "aprovados": 34,
     "reprovados": 0,
     "resultados": [
         {
@@ -115,6 +115,30 @@
         },
         {
             "teste": "Administrador não exclui a própria conta",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Pesquisa por palavra-chave Educação retorna cinco projetos demo",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Pesquisa por instituição sem publicados retorna vazio",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Destaques são publicados e limitados a três",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Cinco autores e três colaboradores persistem com responsável distinto",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Identificadores são únicos e não aceitam valor injetado",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Arquivar remove acesso público e mantém registro administrativo",
             "status": "aprovado"
         }
     ]

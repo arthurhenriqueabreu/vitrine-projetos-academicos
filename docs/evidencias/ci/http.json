@@ -1,6 +1,6 @@
 {
   "suite": "http",
-  "aprovados": 40,
+  "aprovados": 48,
   "reprovados": 0,
   "resultados": [
     {
@@ -92,6 +92,34 @@
       "status": "aprovado"
     },
     {
+      "teste": "Pesquisa por palavra-chave",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Edições anteriores continuam disponíveis",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Filtro de edição identifica e restringe o histórico",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Limpar filtros retorna à listagem completa",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Contador de visualização é estável na mesma sessão",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Favoritar e desfavoritar persiste pela sessão",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Download entrega PDF e cabeçalhos de anexo",
+      "status": "aprovado"
+    },
+    {
       "teste": "Login administrador",
       "status": "aprovado"
     },
@@ -133,6 +161,10 @@
     },
     {
       "teste": "Material de outro projeto não pode ser removido pelo ID",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Cadastrar, editar e remover link e vídeo pelo backend",
       "status": "aprovado"
     },
     {
