@@ -26,8 +26,9 @@ async function open(path) {
 }
 async function shot(name) {
   // A captura completa não dispara, sozinha, o carregamento de imagens lazy fora da viewport.
-  await page.evaluate(async()=>{for(let y=0;y<document.documentElement.scrollHeight;y+=innerHeight){scrollTo(0,y);await new Promise(resolve=>setTimeout(resolve,50));}scrollTo(0,0);});
-  await page.waitForFunction(()=>[...document.images].every(img=>img.complete && img.naturalWidth>0));
+  await page.evaluate(async()=>{for(let y=0;y<document.documentElement.scrollHeight;y+=innerHeight){scrollTo({top:y,behavior:'instant'});await new Promise(resolve=>setTimeout(resolve,80));}scrollTo({top:0,behavior:'instant'});});
+  try { await page.waitForFunction(()=>[...document.images].every(img=>img.complete && img.naturalWidth>0),null,{timeout:5000}); }
+  catch { const missing=await page.locator('img').evaluateAll(images=>images.filter(img=>!img.complete || !img.naturalWidth).map(img=>img.src));throw new Error(`Imagens não carregadas em ${page.url()}: ${JSON.stringify(missing)}`); }
   await page.screenshot({ path: `${out}/screenshots/${name}.jpg`, type: 'jpeg', quality: 70, fullPage: true });
 }
 async function bodyIncludes(...texts) { const text = (await page.locator('body').innerText()).normalize('NFKC').toLocaleLowerCase('pt-BR'); for (const value of texts) assert.ok(text.includes(value.normalize('NFKC').toLocaleLowerCase('pt-BR')), `Texto ausente: ${value}`); }
@@ -39,14 +40,14 @@ async function login(role) {
   await page.waitForURL(`${base}/admin`);
 }
 try {
-  await test('CA01', 'Página institucional no navegador', async () => { await open(''); await bodyIncludes('Faculdade Senac Joinville', 'Grandes ideias.', '10'); await shot('01-inicio-desktop'); });
-  await test('CA02', 'Vitrine lista publicados', async () => { await open('vitrine'); assert.equal(await page.locator('.project-card').count(), 10); await bodyIncludes('Conecta Campus'); await shot('02-vitrine-desktop'); });
+  await test('CA01', 'Página institucional no navegador', async () => { await open(''); await bodyIncludes('Faculdade Senac Joinville', 'Grandes ideias.', '10'); assert.equal((await page.locator('.stat-grid strong').first().textContent()).trim(),'10'); assert.equal(await page.locator('.project-card').count(),3); await shot('01-inicio-desktop'); });
+  await test('CA02', 'Vitrine lista publicados', async () => { await open(''); await page.locator('.hero-actions a.button').click(); await page.waitForURL(`${base}/vitrine`); assert.equal(await page.locator('.project-card').count(), 10); await bodyIncludes('Conecta Campus'); await shot('02-vitrine-desktop'); });
   await test('CA03', 'Filtro por área pela interface', async () => { await page.locator('#filter-area').selectOption('1'); await page.getByRole('button', { name: 'Aplicar filtros' }).click(); assert.ok((await page.locator('.project-card').count()) > 0); for (const text of await page.locator('.project-card .eyebrow').allTextContents()) assert.equal(text.trim(), 'Tecnologia e inovação'); });
   await test('CA04', 'Busca por título pela interface', async () => { await open('vitrine'); await page.locator('#q').fill('Conecta Campus'); await page.getByRole('button', { name: 'Pesquisar', exact: false }).click(); assert.equal(await page.locator('.project-card').count(), 1); await bodyIncludes('Conecta Campus'); });
   await test('CA05', 'Busca por autor pela interface', async () => { await page.locator('#q').fill('Clara Martins'); await page.getByRole('button', { name: 'Pesquisar', exact: false }).click(); await bodyIncludes('Conecta Campus'); assert.ok((await page.locator('.project-card').count()) > 0); });
-  await test('CA06', 'Detalhes e materiais no navegador', async () => { await open('projeto/1'); await bodyIncludes('Conecta Campus', 'Clara Martins', 'Helena Duarte', 'Resumo', 'Documentos do projeto', 'Unidade curricular'); assert.ok((await page.locator('.gallery img').count()) > 0); assert.ok((await page.locator('.pdf-frame').count()) > 0); await shot('03-projeto-desktop'); });
+  await test('CA06', 'Detalhes e materiais no navegador', async () => { await open('vitrine'); await page.locator('.project-card h3 a').filter({hasText:'Conecta Campus'}).click(); await page.waitForURL(`${base}/projeto/1`); assert.equal((await page.locator('h1').textContent()).trim(),'Conecta Campus: oportunidades que aproximam'); await bodyIncludes('Clara Martins', 'Lucas Ferreira', 'Helena Duarte', 'Resumo', 'Documentos do projeto', 'Unidade curricular', 'Desenvolvimento de software', 'Palavras que conectam', 'Joinville'); assert.ok((await page.locator('.gallery img').count()) > 0); assert.ok((await page.locator('.pdf-frame').count()) > 0); await shot('03-projeto-desktop'); });
   await test('CA07', 'Painel bloqueia visitante', async () => { await page.goto(`${base}/admin`); assert.equal(new URL(page.url()).pathname, '/login'); await shot('04-login-desktop'); });
-  await test('LOGIN', 'Autenticação e dashboard reais', async () => { await login('admin'); await bodyIncludes('Visão geral', 'Cadastros', 'Sair'); await shot('05-dashboard-desktop'); });
+  await test('LOGIN', 'Autenticação e dashboard reais', async () => { await login('admin'); await bodyIncludes('Visão geral', 'Cadastros', 'Sair'); assert.deepEqual((await page.locator('.dashboard-stats strong').allTextContents()).slice(0,4),['12','10','1','1']); await shot('05-dashboard-desktop'); });
   await test('CA11', 'Cadastro de edição e disponibilidade no projeto', async () => {
     await open('admin/cadastros/edicoes/novo'); await page.locator('#field-nome').fill(unique); await page.locator('#field-ano').fill('2027'); await page.locator('#field-descricao').fill('Edição de teste por navegador'); await page.getByRole('button', { name: 'Salvar registro' }).click(); await bodyIncludes('Cadastro atualizado'); await open('admin/projetos/novo'); assert.ok((await page.locator('#edicao_id').innerText()).includes(unique));
   });

@@ -1,0 +1,366 @@
+{
+  "suite": "browser",
+  "data": "2026-11-26T19:48:06.874Z",
+  "browser": "Chromium Playwright",
+  "source_sha": "4acfe38ec0ea1132cdf99ff792a6c86b66fbbc3a",
+  "aprovados": 17,
+  "reprovados": 1,
+  "resultados": [
+    {
+      "codigo": "CA01",
+      "teste": "Página institucional no navegador",
+      "status": "aprovado",
+      "ms": 694
+    },
+    {
+      "codigo": "CA02",
+      "teste": "Vitrine lista publicados",
+      "status": "aprovado",
+      "ms": 657
+    },
+    {
+      "codigo": "CA03",
+      "teste": "Filtro por área pela interface",
+      "status": "aprovado",
+      "ms": 115
+    },
+    {
+      "codigo": "CA04",
+      "teste": "Busca por título pela interface",
+      "status": "aprovado",
+      "ms": 632
+    },
+    {
+      "codigo": "CA05",
+      "teste": "Busca por autor pela interface",
+      "status": "aprovado",
+      "ms": 302
+    },
+    {
+      "codigo": "CA06",
+      "teste": "Detalhes e materiais no navegador",
+      "status": "reprovado",
+      "erro": "Texto ausente: Unidade curricular"
+    },
+    {
+      "codigo": "CA07",
+      "teste": "Painel bloqueia visitante",
+      "status": "aprovado",
+      "ms": 75
+    },
+    {
+      "codigo": "LOGIN",
+      "teste": "Autenticação e dashboard reais",
+      "status": "aprovado",
+      "ms": 708
+    },
+    {
+      "codigo": "CA11",
+      "teste": "Cadastro de edição e disponibilidade no projeto",
+      "status": "aprovado",
+      "ms": 1124
+    },
+    {
+      "codigo": "CA08",
+      "teste": "Cadastro de trabalho pelo formulário",
+      "status": "aprovado",
+      "ms": 1266
+    },
+    {
+      "codigo": "CA09",
+      "teste": "Edição de trabalho pelo formulário",
+      "status": "aprovado",
+      "ms": 1124
+    },
+    {
+      "codigo": "UPLOAD",
+      "teste": "Upload e visualização de imagem pelo formulário",
+      "status": "aprovado",
+      "ms": 4106
+    },
+    {
+      "codigo": "CA10",
+      "teste": "Rascunho removido da vitrine",
+      "status": "aprovado",
+      "ms": 1131
+    },
+    {
+      "codigo": "DESKTOP",
+      "teste": "Todas as páginas públicas e administrativas em desktop",
+      "status": "aprovado",
+      "ms": 12777
+    },
+    {
+      "codigo": "CA12",
+      "teste": "Todas as páginas em viewport de smartphone e menu acessível",
+      "status": "aprovado",
+      "ms": 14970
+    },
+    {
+      "codigo": "TABLET",
+      "teste": "Páginas principais em tablet",
+      "status": "aprovado",
+      "ms": 2658
+    },
+    {
+      "codigo": "TECLADO",
+      "teste": "Link de pular conteúdo utilizável por teclado",
+      "status": "aprovado",
+      "ms": 551
+    },
+    {
+      "codigo": "SEM_ERROS_JS",
+      "teste": "Nenhuma exceção JavaScript durante navegação",
+      "status": "aprovado",
+      "ms": 1
+    }
+  ],
+  "paginas": [
+    {
+      "pagina": "/",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "vitrine",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "edicoes",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "favoritos",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "projeto/1",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "privacidade",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "catalogo",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "login",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/projetos",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/projetos/novo",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/auditoria",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/usuarios",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/areas",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/subareas",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/instituicoes",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/cursos",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/unidades_curriculares",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/autores",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/orientadores",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/edicoes",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/palavras_chave",
+      "viewport": "1440x900",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "/",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "vitrine",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "edicoes",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "favoritos",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "projeto/1",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "privacidade",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "catalogo",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "login",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/projetos",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/projetos/novo",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/auditoria",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/usuarios",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/areas",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/subareas",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/instituicoes",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/cursos",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/unidades_curriculares",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/autores",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/orientadores",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/edicoes",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/cadastros/palavras_chave",
+      "viewport": "390x844",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "/",
+      "viewport": "768x1024",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "vitrine",
+      "viewport": "768x1024",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "projeto/1",
+      "viewport": "768x1024",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin",
+      "viewport": "768x1024",
+      "status": "aprovado"
+    },
+    {
+      "pagina": "admin/projetos/novo",
+      "viewport": "768x1024",
+      "status": "aprovado"
+    }
+  ],
+  "limitacao": "Navegador real automatizado em CI; não é teste manual em aparelho físico nem auditoria WCAG."
+}

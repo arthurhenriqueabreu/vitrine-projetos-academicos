@@ -69,6 +69,25 @@ test('CSP e nosniff enviados', lambda: request('login')[2].get('X-Content-Type-O
 test('Sessão HttpOnly e SameSite', lambda: any(c.has_nonstandard_attr('HttpOnly') and c.get_nonstandard_attr('SameSite','').lower()=='lax' for c in jar))
 test('Credenciais e código não são servidos', lambda: request('.env')[0] == 404 and request('app/Database.php')[0] == 404)
 test('Catálogo de impressão', lambda: 'Imprimir ou salvar em PDF' in html('catalogo'))
+test('Pesquisa por palavra-chave',lambda:'Conecta Campus' in html('vitrine?q=Educação'))
+test('Edições anteriores continuam disponíveis',lambda:'Mostra de Projetos 2025' in html('edicoes') and 'Mostra de Projetos 2026' in html('edicoes'))
+test('Filtro de edição identifica e restringe o histórico',lambda:'3 projetos encontrados' in html('vitrine?edicao=1') and 'Edição selecionada: <strong>Mostra de Projetos 2025' in html('vitrine?edicao=1'))
+test('Limpar filtros retorna à listagem completa',lambda:'10 projetos encontrados' in html('vitrine') and 'href="'+BASE+'/vitrine"' in html('vitrine?area=1&edicao=2'))
+test('Contador de visualização é estável na mesma sessão',lambda:re.search(r'class="view-count">(\d+)',html('projeto/1')).group(1)==re.search(r'class="view-count">(\d+)',html('projeto/1')).group(1))
+
+def favorite_roundtrip():
+    request('favoritar/1',{'csrf':csrf(html('projeto/1'))})
+    saved='Conecta Campus' in html('favoritos')
+    request('favoritar/1',{'csrf':csrf(html('projeto/1'))})
+    return saved and 'Nenhum projeto' in html('favoritos')
+test('Favoritar e desfavoritar persiste pela sessão',favorite_roundtrip)
+
+def pdf_download():
+    page=html('projeto/1')
+    pdfid=re.search(r'<iframe[^>]+src="[^\"]*/arquivo/(\d+)"',page).group(1)
+    code,data,headers,_=request(f'arquivo/{pdfid}?download=1')
+    return code==200 and data.startswith(b'%PDF-') and headers.get('Content-Type')=='application/pdf' and headers.get('Content-Disposition','').startswith('attachment;')
+test('Download entrega PDF e cabeçalhos de anexo',pdf_download)
 
 def login(email, password):
     return request('login', dict(csrf=csrf(html('login')),email=email,senha=password))[3].endswith('/admin')
@@ -119,6 +138,17 @@ if project_id:
     pdf_bytes=request(f'arquivo/{pdf_id}')[1]
     test('PDF demonstrativo é aceito', lambda: 'application/pdf' in multipart('demo.pdf','application/pdf',pdf_bytes,alt='Documento de teste'))
     test('Material de outro projeto não pode ser removido pelo ID',lambda:request(f'admin/projetos/{project_id}/remover-arquivo',{'csrf':csrf(html(f'admin/projetos/{project_id}')),'material_id':1})[0]==404 and request('arquivo/1')[0]==200)
+
+    def links_roundtrip():
+        path=f'admin/projetos/{project_id}'
+        page=request(path+'/link',{'csrf':csrf(html(path)),'titulo':'Link criado HTTP','url':'https://example.org/projeto','tipo':'externo'})[1].decode('utf-8')
+        mid=re.search(r'<tr><td><a[^>]+>Link criado HTTP</a>.*?name="material_id" value="(\d+)"',page,re.S).group(1)
+        page=request(path+'/editar-link',{'csrf':csrf(page),'material_id':mid,'titulo':'Vídeo editado HTTP','url':'https://youtu.be/abcdefghijk','tipo':'video'})[1].decode('utf-8')
+        public=html(f'projeto/{project_id}')
+        edited='Vídeo editado HTTP' in public and 'youtube-nocookie.com/embed/abcdefghijk' in public
+        request(path+'/remover-link',{'csrf':csrf(page),'material_id':mid})
+        return edited and 'Vídeo editado HTTP' not in html(f'projeto/{project_id}')
+    test('Cadastrar, editar e remover link e vídeo pelo backend',links_roundtrip)
 
     def edit_to_draft():
         page=html(f'admin/projetos/{project_id}')
