@@ -1,0 +1,12 @@
+{
+  "data": "2026-11-26",
+  "arquivos": [
+    {"nome": "Recuperação(1).pdf", "paginas": 14, "bytes": 232158},
+    {"nome": "Recuperação(2).pdf", "paginas": 14, "bytes": 232158}
+  ],
+  "metodo": "Leitura integral e comparação das listas de texto extraído das 14 páginas pelo leitor de documentos",
+  "texto_extraido_identico": true,
+  "comparacao_binaria_executada": false,
+  "codigos_conferidos": {"RF": 47, "RNF": 18, "RN": 14, "CA": 12},
+  "observacao": "Mesma extensão textual dos requisitos. Não representa comparação binária ou perícia de conteúdos ocultos."
+}

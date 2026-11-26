@@ -17,14 +17,20 @@ const unique = `Navegador ${Date.now()}`;
 async function test(code, name, fn) {
   const start = Date.now();
   try { await fn(); results.push({ codigo: code, teste: name, status: 'aprovado', ms: Date.now() - start }); }
-  catch (e) { results.push({ codigo: code, teste: name, status: 'reprovado', erro: e.message }); }
+  catch (e) { await shot(`falha-${code}`).catch(()=>{}); results.push({ codigo: code, teste: name, status: 'reprovado', erro: e.message }); }
 }
 async function open(path) {
   const response = await page.goto(`${base}/${path}`, { waitUntil: 'networkidle' });
   assert.equal(response.status(), 200, `HTTP ${response.status()} em ${path}`);
+  assert.equal(new URL(page.url()).pathname, new URL(`${base}/${path}`).pathname, `Redirecionamento inesperado em ${path}`);
 }
-async function shot(name) { await page.screenshot({ path: `${out}/screenshots/${name}.jpg`, type: 'jpeg', quality: 70, fullPage: true }); }
-async function bodyIncludes(...texts) { const text = await page.locator('body').innerText(); for (const value of texts) assert.ok(text.includes(value), `Texto ausente: ${value}`); }
+async function shot(name) {
+  // A captura completa não dispara, sozinha, o carregamento de imagens lazy fora da viewport.
+  await page.evaluate(async()=>{for(let y=0;y<document.documentElement.scrollHeight;y+=innerHeight){scrollTo(0,y);await new Promise(resolve=>setTimeout(resolve,50));}scrollTo(0,0);});
+  await page.waitForFunction(()=>[...document.images].every(img=>img.complete && img.naturalWidth>0));
+  await page.screenshot({ path: `${out}/screenshots/${name}.jpg`, type: 'jpeg', quality: 70, fullPage: true });
+}
+async function bodyIncludes(...texts) { const text = (await page.locator('body').innerText()).normalize('NFKC').toLocaleLowerCase('pt-BR'); for (const value of texts) assert.ok(text.includes(value.normalize('NFKC').toLocaleLowerCase('pt-BR')), `Texto ausente: ${value}`); }
 async function login(role) {
   await open('login');
   await page.getByLabel('E-mail', { exact: true }).fill(`${role}@vitrine.example`);
@@ -66,12 +72,12 @@ try {
   const publicPages=['','vitrine','edicoes','favoritos','projeto/1','privacidade','catalogo','login'];
   const adminPages=['admin','admin/projetos','admin/projetos/novo','admin/auditoria', ...['usuarios','areas','subareas','instituicoes','cursos','unidades_curriculares','autores','orientadores','edicoes','palavras_chave'].map(x=>`admin/cadastros/${x}`)];
   await test('DESKTOP', 'Todas as páginas públicas e administrativas em desktop', async () => {
-    for (const path of [...publicPages,...adminPages]) { await open(path); assert.equal(await page.locator('h1').count(),1,`Título em ${path}`); const dimensions=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,width:innerWidth})); assert.ok(dimensions.scroll<=dimensions.width+1,`Overflow em ${path}: ${JSON.stringify(dimensions)}`); pages.push({pagina:path||'/',viewport:'1440x900',status:'aprovado'}); }
+    for (const path of [...publicPages,...adminPages]) { await open(path); assert.equal(await page.locator('h1').count(),1,`Título em ${path}`); const dimensions=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,width:innerWidth})); assert.ok(dimensions.scroll<=dimensions.width+1,`Overflow em ${path}: ${JSON.stringify(dimensions)}`); await shot(`desktop-${path.replaceAll('/','-')||'inicio'}`); pages.push({pagina:path||'/',viewport:'1440x900',status:'aprovado'}); }
     await open('edicoes'); await shot('07-edicoes-desktop'); await open('admin/cadastros/autores'); await shot('08-autores-desktop');
   });
   await test('CA12', 'Todas as páginas em viewport de smartphone e menu acessível', async () => {
     await page.setViewportSize({width:390,height:844});
-    for (const path of [...publicPages,...adminPages]) { await open(path); const d=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,width:innerWidth})); assert.ok(d.scroll<=d.width+1,`Overflow mobile em ${path}: ${JSON.stringify(d)}`); pages.push({pagina:path||'/',viewport:'390x844',status:'aprovado'}); }
+    for (const path of [...publicPages,...adminPages]) { await open(path); const d=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,width:innerWidth})); assert.ok(d.scroll<=d.width+1,`Overflow mobile em ${path}: ${JSON.stringify(d)}`); await shot(`mobile-${path.replaceAll('/','-')||'inicio'}`); pages.push({pagina:path||'/',viewport:'390x844',status:'aprovado'}); }
     for (const [path,name] of [['','09-inicio-mobile'],['vitrine','10-vitrine-mobile'],['projeto/1','11-projeto-mobile'],['admin','12-dashboard-mobile'],['admin/projetos/novo','13-formulario-mobile']]) { await open(path); await shot(name); }
     await open('vitrine'); const menu=page.getByRole('button',{name:/Menu/}); assert.equal(await menu.getAttribute('aria-expanded'),'false'); await menu.click(); assert.equal(await menu.getAttribute('aria-expanded'),'true'); await page.keyboard.press('Escape'); assert.equal(await menu.getAttribute('aria-expanded'),'false');
   });

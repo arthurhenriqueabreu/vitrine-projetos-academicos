@@ -1,0 +1,42 @@
+{
+  "suite": "mutation",
+  "detectadas": 7,
+  "total": 7,
+  "resultados": [
+    {
+      "mutacao": "titulo",
+      "cenario": "T├¡tulo obrigat├│rio",
+      "status": "detectada"
+    },
+    {
+      "mutacao": "curso",
+      "cenario": "Associa├º├úo obrigat├│ria ao curso",
+      "status": "detectada"
+    },
+    {
+      "mutacao": "situacao",
+      "cenario": "Situa├º├úo fora da lista ├® recusada",
+      "status": "detectada"
+    },
+    {
+      "mutacao": "responsavel",
+      "cenario": "Respons├ível n├úo pode colaborar no mesmo trabalho",
+      "status": "detectada"
+    },
+    {
+      "mutacao": "limite_ids",
+      "cenario": "M├íximo de cinco autores",
+      "status": "detectada"
+    },
+    {
+      "mutacao": "editor_excluir",
+      "cenario": "Editor n├úo exclui projetos",
+      "status": "detectada"
+    },
+    {
+      "mutacao": "csrf",
+      "cenario": "CSRF ausente ├® recusado",
+      "status": "detectada"
+    }
+  ]
+}
