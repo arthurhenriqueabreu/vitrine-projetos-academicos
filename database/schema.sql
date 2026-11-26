@@ -1,0 +1,62 @@
+CREATE TABLE IF NOT EXISTS usuarios (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+ nome VARCHAR(120) NOT NULL, email VARCHAR(190) NOT NULL UNIQUE,
+ senha_hash VARCHAR(255) NOT NULL, perfil ENUM('administrador','editor') NOT NULL DEFAULT 'editor',
+ ativo BOOLEAN NOT NULL DEFAULT 1, criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS edicoes (id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(120) NOT NULL, ano SMALLINT UNSIGNED NOT NULL, descricao TEXT, UNIQUE KEY edicao_nome (nome)) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS areas (id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(120) NOT NULL UNIQUE, descricao TEXT) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS subareas (id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(120) NOT NULL, area_id BIGINT UNSIGNED NOT NULL, UNIQUE KEY subarea_nome (nome,area_id), UNIQUE KEY subarea_area (id,area_id), FOREIGN KEY (area_id) REFERENCES areas(id)) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS instituicoes (id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(150) NOT NULL UNIQUE, cidade VARCHAR(100) NOT NULL, uf CHAR(2) NOT NULL) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS cursos (id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(150) NOT NULL, instituicao_id BIGINT UNSIGNED NOT NULL, UNIQUE KEY curso_nome (nome,instituicao_id), UNIQUE KEY curso_instituicao (id,instituicao_id), FOREIGN KEY (instituicao_id) REFERENCES instituicoes(id)) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS unidades_curriculares (id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(150) NOT NULL, curso_id BIGINT UNSIGNED NOT NULL, UNIQUE KEY uc_nome (nome,curso_id), UNIQUE KEY uc_curso (id,curso_id), FOREIGN KEY (curso_id) REFERENCES cursos(id)) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS autores (id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(150) NOT NULL, biografia TEXT, instituicao_id BIGINT UNSIGNED NOT NULL, FOREIGN KEY (instituicao_id) REFERENCES instituicoes(id)) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS orientadores (id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(150) NOT NULL, biografia TEXT, instituicao_id BIGINT UNSIGNED NOT NULL, FOREIGN KEY (instituicao_id) REFERENCES instituicoes(id)) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS palavras_chave (id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(80) NOT NULL UNIQUE) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS trabalhos (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, identificador CHAR(32) NOT NULL UNIQUE,
+ titulo VARCHAR(200) NOT NULL, resumo TEXT NOT NULL, objetivos TEXT NOT NULL,
+ situacao ENUM('rascunho','publicado','arquivado') NOT NULL DEFAULT 'rascunho', destaque BOOLEAN NOT NULL DEFAULT 0,
+ edicao_id BIGINT UNSIGNED NOT NULL, area_id BIGINT UNSIGNED NOT NULL, subarea_id BIGINT UNSIGNED NULL,
+ instituicao_id BIGINT UNSIGNED NOT NULL, curso_id BIGINT UNSIGNED NOT NULL, unidade_curricular_id BIGINT UNSIGNED NOT NULL,
+ responsavel_id BIGINT UNSIGNED NOT NULL, criado_por BIGINT UNSIGNED NOT NULL,
+ visualizacoes BIGINT UNSIGNED NOT NULL DEFAULT 0, versao INT UNSIGNED NOT NULL DEFAULT 1,
+ criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP, atualizado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ FOREIGN KEY (edicao_id) REFERENCES edicoes(id), FOREIGN KEY (area_id) REFERENCES areas(id),
+ FOREIGN KEY (subarea_id,area_id) REFERENCES subareas(id,area_id),
+ FOREIGN KEY (instituicao_id) REFERENCES instituicoes(id), FOREIGN KEY (curso_id,instituicao_id) REFERENCES cursos(id,instituicao_id),
+ FOREIGN KEY (unidade_curricular_id,curso_id) REFERENCES unidades_curriculares(id,curso_id),
+ FOREIGN KEY (responsavel_id) REFERENCES orientadores(id), FOREIGN KEY (criado_por) REFERENCES usuarios(id),
+ INDEX vitrine (situacao,edicao_id,area_id), INDEX destaque_idx (situacao,destaque), INDEX curso_idx (curso_id), INDEX titulo_idx (titulo)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS trabalho_autores (
+ trabalho_id BIGINT UNSIGNED NOT NULL, autor_id BIGINT UNSIGNED NOT NULL, posicao TINYINT UNSIGNED NOT NULL,
+ PRIMARY KEY (trabalho_id,autor_id), UNIQUE KEY posicao_autor (trabalho_id,posicao),
+ CONSTRAINT autor_posicao CHECK (posicao BETWEEN 1 AND 5),
+ FOREIGN KEY (trabalho_id) REFERENCES trabalhos(id) ON DELETE CASCADE, FOREIGN KEY (autor_id) REFERENCES autores(id)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS trabalho_colaboradores (
+ trabalho_id BIGINT UNSIGNED NOT NULL, orientador_id BIGINT UNSIGNED NOT NULL, posicao TINYINT UNSIGNED NOT NULL,
+ PRIMARY KEY (trabalho_id,orientador_id), UNIQUE KEY posicao_colaborador (trabalho_id,posicao),
+ CONSTRAINT colaborador_posicao CHECK (posicao BETWEEN 1 AND 3),
+ FOREIGN KEY (trabalho_id) REFERENCES trabalhos(id) ON DELETE CASCADE, FOREIGN KEY (orientador_id) REFERENCES orientadores(id)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS trabalho_palavras (trabalho_id BIGINT UNSIGNED NOT NULL, palavra_id BIGINT UNSIGNED NOT NULL, PRIMARY KEY (trabalho_id,palavra_id), FOREIGN KEY (trabalho_id) REFERENCES trabalhos(id) ON DELETE CASCADE, FOREIGN KEY (palavra_id) REFERENCES palavras_chave(id)) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS arquivos (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, trabalho_id BIGINT UNSIGNED NOT NULL,
+ nome_original VARCHAR(200) NOT NULL, nome_storage VARCHAR(80) NOT NULL UNIQUE, mime VARCHAR(80) NOT NULL,
+ tamanho INT UNSIGNED NOT NULL, texto_alternativo VARCHAR(200) NOT NULL,
+ criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ FOREIGN KEY (trabalho_id) REFERENCES trabalhos(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS links (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, trabalho_id BIGINT UNSIGNED NOT NULL,
+ titulo VARCHAR(150) NOT NULL, url VARCHAR(2000) NOT NULL, tipo ENUM('video','externo') NOT NULL,
+ FOREIGN KEY (trabalho_id) REFERENCES trabalhos(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS favoritos (
+ visitante_hash CHAR(64) NOT NULL, trabalho_id BIGINT UNSIGNED NOT NULL, criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY (visitante_hash,trabalho_id), FOREIGN KEY (trabalho_id) REFERENCES trabalhos(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS login_tentativas (id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, ip_hash CHAR(64) NOT NULL, criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP, INDEX tentativas (ip_hash,criado_em)) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS auditoria (id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, usuario_id BIGINT UNSIGNED NULL, acao VARCHAR(80) NOT NULL, entidade VARCHAR(80) NOT NULL, registro_id BIGINT UNSIGNED NOT NULL, criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE SET NULL) ENGINE=InnoDB;

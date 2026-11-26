@@ -1,0 +1,16 @@
+.env
+/storage/uploads/*
+!/storage/uploads/.gitkeep
+/storage/logs/*
+!/storage/logs/.gitkeep
+/storage/backups/*
+!/storage/backups/.gitkeep
+/runtime/
+/docs/evidencias/*.cookies
+*.zip
+*.log
+/.idea/
+/.vscode/
+__pycache__/
+*.pyc
+/docs/evidencias/browser/

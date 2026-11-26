@@ -1,0 +1,2 @@
+git add: fatal: Unable to create 'C:/Users/User/Documents/Dev/vitrine-projetos-academicos/.git/index.lock': Permission denied
+Sem commit ou push nesta sessão.

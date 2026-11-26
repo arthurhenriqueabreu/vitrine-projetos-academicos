@@ -1,0 +1,100 @@
+name: PHP e MySQL reais
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: write
+concurrency:
+  group: validacao-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  full-stack:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: ci-local-password
+          MYSQL_DATABASE: vitrine_test
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="mysqladmin ping -pci-local-password"
+          --health-interval=10s --health-timeout=5s --health-retries=10
+    env:
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_DATABASE: vitrine_test
+      DB_USERNAME: root
+      DB_PASSWORD: ci-local-password
+      APP_URL: http://127.0.0.1:8080
+      DEMO_ADMIN_PASSWORD: CI-admin-only-2026
+      DEMO_EDITOR_PASSWORD: CI-editor-only-2026
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_mysql, mbstring, fileinfo, gd
+      - name: Preparar evidências e validar sintaxe
+        run: |
+          mkdir -p docs/evidencias/ci
+          printf '%s\n' "$GITHUB_SHA" > docs/evidencias/ci/source-sha.txt
+          find app bin public views tests -name '*.php' -print0 | xargs -0 -n1 php -l | tee docs/evidencias/ci/php-lint.txt
+      - name: Testes unitários
+        id: unit
+        continue-on-error: true
+        run: php tests/unit.php | tee docs/evidencias/ci/unit.json
+      - name: Instalar schema e demonstração em MySQL 8
+        run: |
+          php bin/setup.php --demo | tee docs/evidencias/ci/setup.txt
+          php bin/diagnose.php | tee docs/evidencias/ci/diagnostico.txt
+      - name: Testes de integração
+        id: integration
+        continue-on-error: true
+        run: php tests/integration.php | tee docs/evidencias/ci/integration.json
+      - name: Iniciar aplicação
+        run: |
+          php -d upload_max_filesize=10M -d post_max_size=12M -S 127.0.0.1:8080 -t public public/router.php > docs/evidencias/ci/server.log 2>&1 &
+          for attempt in 1 2 3 4 5; do curl -fsS http://127.0.0.1:8080/login > /dev/null && break || sleep 1; done
+      - name: Testes HTTP
+        id: http
+        continue-on-error: true
+        run: python3 tests/http_test.py | tee docs/evidencias/ci/http.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Preparar navegador de teste
+        run: |
+          npm install --no-save --package-lock=false playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Navegador, aceitação e screenshots
+        id: browser
+        continue-on-error: true
+        run: node tests/browser_test.mjs
+      - name: Publicar evidências como artefato
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidencias-mysql8-${{ github.run_id }}
+          path: docs/evidencias/ci/
+          retention-days: 30
+      - name: Versionar evidências reais
+        if: always() && github.event_name != 'pull_request'
+        run: |
+          git config user.name 'Vitrine CI'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/evidencias/ci
+          if ! git diff --cached --quiet; then
+            git commit -m 'Registra evidências reais de MySQL, HTTP e navegador [skip ci]'
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
+      - name: Resultado conjunto
+        if: always()
+        env:
+          UNIT: ${{ steps.unit.outcome }}
+          INTEGRATION: ${{ steps.integration.outcome }}
+          HTTP: ${{ steps.http.outcome }}
+          BROWSER: ${{ steps.browser.outcome }}
+        run: |
+          printf 'Unitários: %s\nIntegração: %s\nHTTP: %s\nNavegador: %s\n' "$UNIT" "$INTEGRATION" "$HTTP" "$BROWSER" >> "$GITHUB_STEP_SUMMARY"
+          test "$UNIT" = success && test "$INTEGRATION" = success && test "$HTTP" = success && test "$BROWSER" = success

@@ -1,0 +1,145 @@
+{
+    "suite": "unit",
+    "data": "2026-11-26T16:32:51-03:00",
+    "php": "8.0.30",
+    "aprovados": 34,
+    "reprovados": 0,
+    "resultados": [
+        {
+            "teste": "Escape de HTML e aspas",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Escape de UTF-8 inválido",
+            "status": "aprovado"
+        },
+        {
+            "teste": "CSRF aleatório e estável na sessão",
+            "status": "aprovado"
+        },
+        {
+            "teste": "CSRF ausente é recusado",
+            "status": "aprovado"
+        },
+        {
+            "teste": "CSRF incorreto é recusado",
+            "status": "aprovado"
+        },
+        {
+            "teste": "CSRF correto é aceito",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Mínimo de um autor",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Máximo de cinco autores",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Cinco autores aceitos",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Autores duplicados são normalizados",
+            "status": "aprovado"
+        },
+        {
+            "teste": "IDs negativos são recusados",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Máximo de três colaboradores",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Colaboradores opcionais",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Responsável não pode colaborar no mesmo trabalho",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Título obrigatório",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Associação obrigatória ao curso",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Situação fora da lista é recusada",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Perfil desconhecido não edita projetos",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Editor não exclui projetos",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Editor não gerencia usuários",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Cadastro arbitrário é recusado",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Perfil desconhecido não envia arquivos",
+            "status": "aprovado"
+        },
+        {
+            "teste": "SQL de busca não contém entrada interpolada",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Pesquisa escapa curingas LIKE",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Pesquisa combina nomes de múltiplos autores",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Filtros combinados têm parâmetros separados",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Limite do texto de busca",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Favoritos têm identificador de sessão estável",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Vídeo YouTube é incorporado em domínio autorizado",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Vídeo Vimeo é incorporado em domínio autorizado",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Domínio semelhante ao YouTube não é incorporado",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Canal sem vídeo não gera iframe inválido",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Cartão escapa conteúdo malicioso",
+            "status": "aprovado"
+        },
+        {
+            "teste": "Layout mantém rota atual para menu ativo",
+            "status": "aprovado"
+        }
+    ]
+}

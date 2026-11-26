@@ -1,0 +1,1 @@
+<section class="section container empty"><div class="eyebrow">SOLICITAÇÃO <?=$status?></div><h1><?=e($message)?></h1><p>Você pode voltar à vitrine e continuar explorando.</p><a class="button" href="<?=url('vitrine')?>">Voltar à vitrine</a></section>

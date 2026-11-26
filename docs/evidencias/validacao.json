@@ -1,0 +1,181 @@
+{
+  "data": "2026-11-26",
+  "arquivos_php": 32,
+  "verificacoes": [
+    {
+      "teste": "PHP app\\Auth.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP app\\bootstrap.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP app\\CatalogService.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP app\\Database.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP app\\ProjectRepository.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP app\\ProjectService.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP app\\UploadService.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP bin\\create-user.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP bin\\demo-materials.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP bin\\diagnose.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP bin\\install.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP bin\\maintenance.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP bin\\setup.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP public\\index.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP public\\router.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP tests\\integration.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP tests\\unit.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP views\\admin\\audit.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP views\\admin\\catalog.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP views\\admin\\dashboard.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP views\\admin\\project-form.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP views\\admin\\projects.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP views\\catalog.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP views\\detail.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP views\\editions.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP views\\error.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP views\\home.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP views\\layout.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP views\\login.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP views\\partials\\cards.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP views\\print-catalog.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "PHP views\\privacy.php",
+      "status": "aprovado"
+    },
+    {
+      "teste": "34 testes unitários",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Sintaxe JavaScript",
+      "status": "aprovado",
+      "saida": ""
+    },
+    {
+      "teste": "Sintaxe Python",
+      "status": "aprovado",
+      "saida": ""
+    },
+    {
+      "teste": "Matriz completa RF (47)",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Matriz completa RNF (18)",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Matriz completa RN (14)",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Matriz completa CA (12)",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Imagem fallback 0",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Imagem fallback 1",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Imagem fallback 2",
+      "status": "aprovado"
+    },
+    {
+      "teste": "Imagem fallback 3",
+      "status": "aprovado"
+    }
+  ],
+  "observacao": "Verificações estáticas/unitárias. Não substituem a integração MySQL ou os 12 CA."
+}

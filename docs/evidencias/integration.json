@@ -1,0 +1,5 @@
+{
+    "suite": "integration",
+    "status": "bloqueado",
+    "motivo": "SQLSTATE[HY000] [2002] Foi feita uma tentativa de acesso a um soquete de uma maneira que ├® proibida pelas permiss├Áes de acesso"
+}
